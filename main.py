@@ -54,8 +54,12 @@ class Experiment:
         valid_anti = (j_anti >= 0) & (j_anti < self.n)
         self.matrix[idx[valid_anti], j_anti[valid_anti]] -= 1
 
+        # remove queen mark and mark this position as tried
         self.matrix[row, col] = 0
         self.tried_positions[row, col] = True
+
+        print("After backtracking:")
+        self.print_matrix()
 
     # def check_backtracking(self, col):
     #     return np.all(self.matrix[:, col] == -1)
@@ -102,12 +106,15 @@ class Experiment:
                 print("Backtracking needed")
                 row = self.find_previous_queen_row(col - 1)
                 self.do_backtracking(row, col - 1)
+
                 #!
                 possibilities = self.find_possibilities(col) #!!!!  
 
                 if not possibilities:
+                    print("Backtracking again")
                     self.tried_positions[:, col] = False
                     col -= 1 #? se va a -1
+                    break
                 #!
             
             
@@ -117,7 +124,7 @@ class Experiment:
                 self.add_blocked_pos(selected_row, col)
                 self.print_matrix()
                 col += 1
-            
+        
             
             print("-----")
 

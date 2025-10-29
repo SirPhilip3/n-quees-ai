@@ -1,20 +1,23 @@
-[[ 1  0  1  0]
- [ 1  1  0  0]
- [-1  1  1  1]
- [ 1  1  0  0]]
------
-[[ 2 -1  2  1]
- [ 2  2  1  0]
- [-1  2  1  2]
- [ 1  2  0  0]]
------
-[[ 2 -1  3  1]
- [ 3  2  2  0]
- [-1  3  2  3]
- [ 2  3 -1  1]]
------
-[[ 2 -1  4  2]
- [ 4  3  3 -1]
- [-1  3  3  4]
- [ 2  4 -1  2]]
-Solved without backtracking
+# n-quees-ai
+
+Quick setup
+
+Create the virtual environment
+```powershell
+python -m venv .venv
+```
+
+Activate the environment
+- PowerShell:
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+Freeze new dependencies
+```bash
+pip freeze > requirements.txt
+```
