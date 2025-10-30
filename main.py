@@ -56,19 +56,13 @@ class Experiment:
 
         # remove queen mark and mark this position as tried
         self.matrix[row, col] = 0
-        self.tried_positions[row, col] = True
-
-        print("After backtracking:")
-        self.print_matrix()
-
-    # def check_backtracking(self, col):
-    #     return np.all(self.matrix[:, col] == -1)
     
     def select_position(self, possibilities):
         if not possibilities:
             return None
-        return rd.choice(possibilities) 
-
+        return rd.choice(possibilities)
+     
+    # seleziona una posizione a caso tra quelle possibili che non sono state già provate
     def find_possibilities(self, col):
         current_col = self.matrix[:, col]
         current_col_tried = self.tried_positions[:, col]
@@ -84,18 +78,12 @@ class Experiment:
             if self.matrix[i, col] == -1:
                 return i
 
-    def constrain_solve(self):
 
-        # first_col_position = rd.randint(0, self.n - 1)
-
-        # # 1 = regina , 0 = vuoto , -1 = vietato
-        # self.matrix[first_col_position][0] = 1
-        # self.add_blocked_pos(first_col_position, 0)
-        
-        # self.print_matrix()
-        col  = 0
+    def constrain_backtracking_solve(self): 
+        col = 0
         while col < self.n:
-
+            print(f"Current column: {col}")
+            
             if col == -1:
                 print("No solution found")
                 break
@@ -104,38 +92,27 @@ class Experiment:
 
             if not possibilities:
                 print("Backtracking needed")
-                row = self.find_previous_queen_row(col - 1)
-                self.do_backtracking(row, col - 1)
 
-                #!
-                possibilities = self.find_possibilities(col) #!!!!  
-
-                if not possibilities:
-                    print("Backtracking again")
-                    self.tried_positions[:, col] = False
-                    col -= 1 #? se va a -1
+                col -= 1
+                if col < 0:
+                    print("No solution found after backtracking")
                     break
-                #!
-            
-            
+                q_row = self.find_previous_queen_row(col)
+                self.do_backtracking(q_row, col)
+                self.tried_positions[:, col + 1] = False # test
+                
             else:
                 selected_row = self.select_position(possibilities)
                 self.tried_positions[selected_row, col] = True
                 self.add_blocked_pos(selected_row, col)
-                self.print_matrix()
                 col += 1
-        
             
+            
+            self.print_matrix()
             print("-----")
+            self.print_tried_positions()
 
-
-
-            # più semplicemente possiamo prendere la prima posizione valida
-            # per il backtracking
-        
-        self.print_tried_positions()
-        print("Solved")
 
 # for i in range(100):
-experiment = Experiment(4)
-experiment.constrain_solve()
+experiment = Experiment(8)
+experiment.constrain_backtracking_solve()
