@@ -1,196 +1,94 @@
-import numpy as np
 import random as rd
+import numpy as np
+import math
 
-
-class Experiment:
-    def __init__(self, n):
+class experiment:
+    def __init__(self, temperature, n):
+        self.temperature = temperature
         self.n = n
-        self.matrix = np.zeros((n, n), dtype=int)
-        self.tried_positions = np.full((n, n), False, dtype=bool)
-        self.iteration = 0
-        # ogni cella il numero di volte che è stata bloccata dalla regina
-        # regina = -1
-        # salva le posizioni già provate della prima regina nella prima colonna 
-
-    def print_matrix(self):
-        print(self.matrix)
+        self.current_state = []
+        self.schedule = [100 - i for i in range(100)]  #! Simple linear schedule test
     
-    def print_tried_positions(self):
-        print(self.tried_positions)
+    def set_initial_random_state(self):
+        i = 0
+        while i < self.n:
+            # da valutare se metere solo 1 per colonna come requisito iniziale
+            row = rd.randint(0, self.n - 1)
+            # col = rd.randint(0, self.n - 1)
+            if (i, row, 0) not in self.current_state:
+                self.current_state.append((i,row,0))  # (row, col, fitness)
+                i += 1
 
-    def add_blocked_pos(self, row, col):
-        
-        self.matrix[:,col] += 1 # tutta la colonna vietata
-        self.matrix[row,:] += 1 # tutta la riga vietata
+    def fitness_function(self, state): 
+        # somma delle volte che ogni regina si attacca
+        total = 0 
+        for q in range(self.n):
 
-        # block both diagonals that pass through (row, col)
-        idx = np.arange(self.n)
-        # main diagonal (i - j == row - col) -> j = idx - (row - col)
-        j_main = idx - (row - col)
-        valid_main = (j_main >= 0) & (j_main < self.n)
-        self.matrix[idx[valid_main], j_main[valid_main]] += 1
+            row_conf = 0 
+            col_conf = 0
+            diag_main = 0
+            diag_anti = 0 
 
-        # anti-diagonal (i + j == row + col) -> j = (row + col) - idx
-        j_anti = (row + col) - idx
-        valid_anti = (j_anti >= 0) & (j_anti < self.n)
-        self.matrix[idx[valid_anti], j_anti[valid_anti]] += 1
+            row_q, col_q, fitness_q = state[q]
+            remaining = state[:q] + state[q+1:]
 
-        # ensure the queen position itself is marked as occupied (not blocked)
-        self.matrix[row, col] = -1
+            for row_j, col_j, fitness_j in remaining:
+                if row_q == row_j:
+                    row_conf += 1
+                if col_q == col_j:
+                    col_conf += 1
+                if abs(row_q - row_j) == abs(col_q - col_j):
 
-    def do_backtracking(self, row, col):
+                    if (row_q - col_q) == (row_j - col_j):
+                        diag_main += 1
+                    else:
+                        diag_anti += 1
+            
+            total_q = row_conf + col_conf + diag_main + diag_anti
+            total += total_q
 
-        self.matrix[:,col] -= 1 # tutta la colonna vietata
-        self.matrix[row,:] -= 1 # tutta la riga vietata
+            state[q] = (row_q, col_q, total_q)
 
-        # block both diagonals that pass through (row, col)
-        idx = np.arange(self.n)
-        # main diagonal (i - j == row - col) -> j = idx - (row - col)
-        j_main = idx - (row - col)
-        valid_main = (j_main >= 0) & (j_main < self.n)
-        self.matrix[idx[valid_main], j_main[valid_main]] -= 1
-
-        # anti-diagonal (i + j == row + col) -> j = (row + col) - idx
-        j_anti = (row + col) - idx
-        valid_anti = (j_anti >= 0) & (j_anti < self.n)
-        self.matrix[idx[valid_anti], j_anti[valid_anti]] -= 1
-
-        # remove queen mark and mark this position as tried
-        self.matrix[row, col] = 0
+        # print("State with fitness: ", state)
+        return total
     
-    def select_position(self, possibilities):
-        if not possibilities:
-            return None
-        return rd.choice(possibilities)
-     
-    # seleziona una posizione a caso tra quelle possibili che non sono state già provate
-    def find_possibilities(self, col):
-        current_col = self.matrix[:, col]
-        current_col_tried = self.tried_positions[:, col]
+    def run(self):
+        self.set_initial_random_state()
+        current_fitness = self.fitness_function()
 
-        possibilities = []
-        for j in range(self.n):
-            if current_col[j] == 0 and not current_col_tried[j]:
-                possibilities.append(j)
-        return possibilities
-    
-    def find_previous_queen_row(self, col):
+        print("Initial state: ", self.current_state)
+        print("Initial fitness: ", current_fitness)
+
+    def neighbor(self, state):
+        # Generate neighboring states by moving each queen to a different row in its column
+        neighbor_state = state.copy()
+        print("Generating neighbor for state: ", state)
+        queen = rd.randint(0, self.n - 1)
+        new_row = rd.randint(0, self.n - 1)
+        neighbor_state[queen] = (new_row, queen, 0)  # Move queen to new row
         for i in range(self.n):
-            if self.matrix[i, col] == -1:
-                return i
+            row, col, fit = neighbor_state[i]
+            neighbor_state[i] = (row, col, 0)  # Reset fitness
+        return neighbor_state
 
-    def matrix_to_array(self):
-        result = []
-        for col in range(self.n):
-            for row in range(self.n):
-                if self.matrix[row, col] == -1:
-                    result.append(row)
-                    break
-        return result
+    def simulated_annealing (self , initial ) :
+        current = initial
+        for T in self.schedule:
+            if T ==0:
+                return current
+            next = self.neighbor( current ) # choice a neighbor state
+            print("Current state: ", current)
+            print("Next state: ", next)
+            de = self.fitness_function( next ) - self.fitness_function( current )
+            print("Delta E: ", de)
+            if de < 0:
+                current = next
+            else :
+                if rd.random() < math.exp( - de / T ) :
+                    current = next
 
-
-    def constrain_backtracking_solve(self): 
-        col = 0
-        sol = True
-        while col < self.n:
-            self.iteration += 1
-            # print(f"Current column: {col}, Iteration: {self.iteration}")
-            
-            if col == -1:
-                # print("No solution found")
-                sol = False
-                break
-
-            possibilities = self.find_possibilities(col)
-
-            if not possibilities:
-                # print("Backtracking needed")
-
-                col -= 1
-                if col < 0:
-                    # print("No solution found after backtracking")
-                    sol = False
-                    break
-                q_row = self.find_previous_queen_row(col)
-                self.do_backtracking(q_row, col)
-                self.tried_positions[:, col + 1] = False # test
-                
-            else:
-                selected_row = self.select_position(possibilities)
-                self.tried_positions[selected_row, col] = True
-                self.add_blocked_pos(selected_row, col)
-                col += 1
-            
-            
-            # self.print_matrix()
-            # print("-----")
-            # self.print_tried_positions()
-        solution_array = self.matrix_to_array() if sol else []
-        return (solution_array ,self.iteration, sol)
-
-stats = []
-for i in range(4000):
-    experiment = Experiment(8)
-    stats.append(experiment.constrain_backtracking_solve())
-
-from collections import Counter, defaultdict
-
-# estrai le soluzioni (escludendo entry con lista vuota)
-solutions = [tuple(s[0]) for s in stats if s[0]]
-
-# conteggi e unici
-counts = Counter(solutions)
-unique_solutions = list(counts.keys())
-
-# iterations arrays
-all_iterations = np.array([s[1] for s in stats])
-success_iterations = np.array([s[1] for s in stats if s[2]])  # sol == True
-failed_iterations = np.array([s[1] for s in stats if not s[2]])
-
-# iterations per unique solution
-iters_per_solution = defaultdict(list)
-for sol, it, solflag in stats:
-    if sol:  # only consider non-empty solution arrays as keys
-        iters_per_solution[tuple(sol)].append(it)
-
-print("Total runs:", len(stats))
-print("Successful runs:", len(success_iterations), f"({100*len(success_iterations)/len(stats):.1f}%)")
-print("Empty/failed runs:", sum(1 for s in stats if not s[0]))
-
-# overall iterations stats (all runs)
-print("\nOverall iterations (all runs):")
-print("  min:", int(all_iterations.min()))
-print("  max:", int(all_iterations.max()))
-print("  mean:", float(all_iterations.mean()))
-print("  median:", float(np.median(all_iterations)))
-print("  std:", float(all_iterations.std()))
-
-# successful runs iterations stats
-if success_iterations.size:
-    print("\nIterations (successful runs):")
-    print("  min:", int(success_iterations.min()))
-    print("  max:", int(success_iterations.max()))
-    print("  mean:", float(success_iterations.mean()))
-    print("  median:", float(np.median(success_iterations)))
-    print("  std:", float(success_iterations.std()))
-else:
-    print("\nNo successful runs to report iterations stats.")
-
-# failed runs iterations stats (optional)
-if failed_iterations.size:
-    print("\nIterations (failed runs):")
-    print("  min:", int(failed_iterations.min()))
-    print("  max:", int(failed_iterations.max()))
-    print("  mean:", float(failed_iterations.mean()))
-    print("  median:", float(np.median(failed_iterations)))
-    print("  std:", float(failed_iterations.std()))
-
-print("\nUnique solutions count:", len(unique_solutions))
-print("Frequencies and iteration stats per unique solution:")
-for sol in unique_solutions:
-    iters = np.array(iters_per_solution[sol])
-    print("  Solution:", list(sol), "count:", counts[sol])
-    if iters.size:
-        print("    iters -> min:", int(iters.min()), "mean:", float(iters.mean()), "max:", int(iters.max()), "median:", float(np.median(iters)), "std:", float(iters.std()))
-    else:
-        print("    no iteration data")
+# for i in range(1000):
+exp = experiment(temperature=100, n=4)
+exp.set_initial_random_state()
+result = exp.simulated_annealing(exp.current_state)
+print(result)
