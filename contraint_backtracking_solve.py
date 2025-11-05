@@ -3,7 +3,7 @@ import random as rd
 
 
 class Experiment:
-    def __init__(self, n):
+    def __init__(self, n, seed=None):
         self.n = n
         self.matrix = np.zeros((n, n), dtype=int)
         self.tried_positions = np.full((n, n), False, dtype=bool)
@@ -11,6 +11,11 @@ class Experiment:
         # ogni cella il numero di volte che è stata bloccata dalla regina
         # regina = -1
         # salva le posizioni già provate della prima regina nella prima colonna 
+
+        # permetti di settare un seed per la riproducibilità
+        self.seed = seed
+        if seed is not None:
+            rd.seed(seed)
 
     def print_matrix(self):
         print(self.matrix)

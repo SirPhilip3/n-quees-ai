@@ -3,11 +3,16 @@ import numpy as np
 import math
 
 class Experiment:
-    def __init__(self, temperature, n):
+    def __init__(self, temperature, n, seed=None):
         self.temperature = temperature
         self.n = n
         self.current_state = [] # (row, col, fitness)
-        self.schedule = [1000 - i for i in range(1000)]  #! Simple linear schedule test
+        self.schedule = [temperature - i for i in range(temperature)]  #! Simple linear schedule test
+        
+        # permetti di settare un seed per la riproducibilità
+        self.seed = seed
+        if seed is not None:
+            rd.seed(seed)
     
     def set_initial_random_state(self):
         i = 0
@@ -31,7 +36,7 @@ class Experiment:
             for row_j, col_j, _ in remaining:
                 if row_q == row_j:
                     total_q += 1
-                if col_q == col_j:
+                if col_q == col_j: # teoricamente inutile perchè mettiamo solo 1 regina per colonna all'inizio
                     total_q += 1
                 if abs(row_q - row_j) == abs(col_q - col_j):
                     total_q += 1
@@ -47,7 +52,7 @@ class Experiment:
         # Generate neighboring states by moving each queen to a different row in its column
         neighbor_state = state.copy()
         print("Generating neighbor for state: ", neighbor_state)
-        queen = rd.randint(0, self.n - 1)
+        queen = rd.randint(0, self.n - 1) 
         new_row = rd.randint(0, self.n - 1)
         neighbor_state[queen] = (new_row, queen, 0)  # Move queen to new row
         for i in range(self.n):
