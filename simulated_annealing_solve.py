@@ -1,18 +1,34 @@
 import random as rd
 import numpy as np
 import math
+import matplotlib.pyplot as plt
 
 class Experiment:
-    def __init__(self, temperature, n, seed=None):
-        self.temperature = temperature
-        self.n = n
+    def __init__(self, initial_temperature=100, table_size=8, schedule_type='linear', cooling_rate=1, seed=None):
+        self.initial_temperature = initial_temperature
+        self.cooling_rate = cooling_rate
+        self.n = table_size
         self.current_state = [] # (row, col, fitness)
-        self.schedule = [temperature - i for i in range(temperature)]  #! Simple linear schedule test
-        
+        self.schedule = []
+
+        self.history = []  # to keep track of the states visited
+
+        if schedule_type == 'linear':
+            self.linear_schedule()
+        elif schedule_type == 'exponential':
+            self.exponential_schedule()
+        elif schedule_type == 'logarithmic':
+            self.logarithmic_schedule()
+        else:
+            raise ValueError("Invalid schedule type. Choose 'linear', 'exponential', or 'logarithmic'.")
+        # self.schedule = [initial_temperature - i for i in range(initial_temperature)]  #! Simple linear schedule test
+
         # permetti di settare un seed per la riproducibilità
         self.seed = seed
         if seed is not None:
             rd.seed(seed)
+        
+        self.set_initial_random_state()
     
     def set_initial_random_state(self):
         i = 0
@@ -23,6 +39,18 @@ class Experiment:
             if (row, i, 0) not in self.current_state:
                 self.current_state.append((row, i, 0))  # (row, col, fitness)
                 i += 1
+
+    def linear_schedule(self):
+        self.schedule = [self.initial_temperature - (i * self.cooling_rate) for i in range(self.initial_temperature)]  
+        pass
+
+    def exponential_schedule(self):
+        self.schedule = [self.initial_temperature * (self.cooling_rate ** i) for i in range(self.initial_temperature)]
+        pass
+
+    def logarithmic_schedule(self):
+        self.schedule = [self.initial_temperature / (1 + math.log(i + 1)) for i in range(self.initial_temperature)]
+        pass
 
     def fitness_function(self, state): 
         # somma delle volte che ogni regina si attacca
@@ -64,6 +92,8 @@ class Experiment:
         current = initial
         current_score , current = self.fitness_function(current)
         for T in self.schedule:
+            self.history.append((T, current_score, current))
+
             print("Temperature: ", T)
             if T ==0:
                 print("Final state: ", current)
@@ -90,9 +120,18 @@ class Experiment:
         
         print("Final state: ", current)
         return current
+    
+    def visualize_history(self):
+        temperatures = [record[0] for record in self.history]
+        fitness_values = [record[1] for record in self.history]
+        plt.plot(temperatures, fitness_values)
+        plt.xlabel('Temperature')
+        plt.ylabel('Fitness Value')
+        plt.title('Simulated Annealing Progress')
+        plt.show()
+        
 
 # for i in range(1000):
-exp = Experiment(temperature=100, n=4)
-exp.set_initial_random_state()
-result = exp.simulated_annealing(exp.current_state)
-print(result)
+# exp = Experiment(temperature=100, n=4, schedule_type='logarithmic')
+# result = exp.simulated_annealing(exp.current_state)
+# print(result)

@@ -1,7 +1,6 @@
 import numpy as np
 import random as rd
 
-
 class Experiment:
     def __init__(self, n, seed=None):
         self.n = n
