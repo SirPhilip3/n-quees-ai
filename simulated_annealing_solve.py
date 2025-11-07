@@ -4,8 +4,9 @@ import math
 import matplotlib.pyplot as plt
 
 class Experiment:
-    def __init__(self, initial_temperature=100, table_size=8, schedule_type='linear', cooling_rate=1, seed=None):
+    def __init__(self, initial_temperature=100, max_iterations=1000, table_size=8, schedule_type='linear', cooling_rate=1, seed=None):
         self.initial_temperature = initial_temperature
+        self.max_iterations = max_iterations
         self.cooling_rate = cooling_rate
         self.n = table_size
         self.current_state = [] # (row, col, fitness)
@@ -41,15 +42,16 @@ class Experiment:
                 i += 1
 
     def linear_schedule(self):
-        self.schedule = [self.initial_temperature - (i * self.cooling_rate) for i in range(self.initial_temperature)]  
+        self.schedule = [self.initial_temperature - (i * self.cooling_rate) for i in range(self.max_iterations)]  
         pass
 
     def exponential_schedule(self):
-        self.schedule = [self.initial_temperature * (self.cooling_rate ** i) for i in range(self.initial_temperature)]
+        self.schedule = [self.initial_temperature * (self.cooling_rate ** i) for i in range(self.max_iterations)]
         pass
 
     def logarithmic_schedule(self):
-        self.schedule = [self.initial_temperature / (1 + math.log(i + 1)) for i in range(self.initial_temperature)]
+        K = 100   # costante di shift importante
+        self.schedule = [self.initial_temperature / math.log(i + K) for i in range(1, self.max_iterations + 1)]
         pass
 
     def fitness_function(self, state): 
@@ -79,10 +81,13 @@ class Experiment:
     def neighbor(self, state):
         # Generate neighboring states by moving each queen to a different row in its column
         neighbor_state = state.copy()
-        print("Generating neighbor for state: ", neighbor_state)
+        #print("Generating neighbor for state: ", neighbor_state)
         queen = rd.randint(0, self.n - 1) 
-        new_row = rd.randint(0, self.n - 1)
-        neighbor_state[queen] = (new_row, queen, 0)  # Move queen to new row
+
+        current_row, col, _ = neighbor_state[queen]
+        new_row = rd.choice([r for r in range(self.n) if r != current_row])
+        neighbor_state[queen] = (new_row, col, 0)
+
         for i in range(self.n):
             row, col, _ = neighbor_state[i]
             neighbor_state[i] = (row, col, 0)  # Reset fitness
@@ -94,31 +99,33 @@ class Experiment:
         for T in self.schedule:
             self.history.append((T, current_score, current))
 
-            print("Temperature: ", T)
-            if T ==0:
-                print("Final state: ", current)
-                return current
-        
+            #print("Temperature: ", T)
+            
             if current_score == 0: #! se 0 allora significa che nessuna regina si attacca = soluzione trovata
                 print("Solution found: ", current)
                 return current
+            
+            if T == 0:
+                print("Final state: ", current)
+                return current
+        
 
             next = self.neighbor( current ) # choice a neighbor state
             next_score , next = self.fitness_function( next )
 
-            print("Current state: ", current)
-            print("Next state: ", next)
+            #print("Current state: ", current)
+            #print("Next state: ", next)
             
             de = next_score - current_score
             
-            print("Delta E: ", de)
+            #print("Delta E: ", de)
             if de < 0:
                 current, current_score = next , next_score
             else :
                 if rd.random() < math.exp( - de / T ) :
                     current, current_score = next , next_score
         
-        print("Final state: ", current)
+        #print("Final state: ", current)
         return current
     
     def visualize_history(self):
@@ -132,6 +139,6 @@ class Experiment:
         
 
 # for i in range(1000):
-# exp = Experiment(temperature=100, n=4, schedule_type='logarithmic')
-# result = exp.simulated_annealing(exp.current_state)
-# print(result)
+#     exp = Experiment(initial_temperature=100, max_iterations= 1000, table_size=8, schedule_type='logarithmic')
+#     result = exp.simulated_annealing(exp.current_state)
+#     print(result)
