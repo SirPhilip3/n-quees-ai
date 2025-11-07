@@ -142,10 +142,10 @@ class Experiment:
 
             ret , sol_indx = self.check_solution()
             if ret:
-                print("Solution: ", self.population[sol_indx])
-                print("current fitness values ", iteration, ":\n", self.fitness_values)
-                print("current population ", iteration, ":\n", self.population)
-                break
+                # print("Solution: ", self.population[sol_indx])
+                # print("current fitness values ", iteration, ":\n", self.fitness_values)
+                # print("current population ", iteration, ":\n", self.population)
+                return True ,self.population[sol_indx] , self.fitness_values[sol_indx] , iteration
             
             mating_indices = self.selection()
 
@@ -170,12 +170,46 @@ class Experiment:
 
             self.mutation()
 
-            print(f"Generation {iteration}")
+            # print(f"Generation {iteration}")
 
-        print("No solution found within the given iterations.")
-        print("current fitness values ", iteration, ":\n", self.fitness_values)
-        print("current population ", iteration, ":\n", self.population)
+        # print("No solution found within the given iterations.")
+        # print("current fitness values ", iteration, ":\n", self.fitness_values)
+        # print("current population ", iteration, ":\n", self.population)
+        return False , self.population , self.fitness_values , self.iterations
 
-        
-exp = Experiment(population_size=1000, table_size=12, iterations=1000)
-exp.genetic_solve()
+solutions = []
+for i in range(500):
+    print(f"--- Run {i+1} ---")
+    exp = Experiment(population_size=250, table_size=8, iterations=500, mutation_rate=0.15)
+    # in generale più iterazioni passano più la soluzione raggiunge un minimo locale e quindi più improbabile che trova
+    # una soluzione se sono passate tante iterazioni
+    res , sol , fitness , it = exp.genetic_solve()
+    solutions.append((res,sol,it))
+    if res:
+        print(f"Run {i+1}: Solution found in {it} iterations with fitness {fitness}: {sol}")
+    else:
+        print(f"Run {i+1}: No solution found in {it} iterations. , Best fitness: {min(fitness)}, average fitness: {np.mean(fitness)}, best Solution: {sol[np.argmin(fitness)]}")
+
+iterations = []
+chess_arr = []
+for res, sol, it in solutions:
+    if res:
+        iterations.append(it)
+        chess_arr.append(np.asarray(sol))
+
+num_runs = len(solutions)
+num_solutions = len(iterations)
+
+print(f"percentage of solutions found  {num_solutions/num_runs:.2f}")
+
+if num_solutions == 0:
+    print("average iterations for solutions: N/A (no solutions)")
+    print("number of unique solutions: 0")
+else:
+    print("average iterations for solutions " + str(np.average(iterations)))
+    stacked = np.vstack(chess_arr)            # shape: (num_solutions, table_size)
+    unique_rows = np.unique(stacked, axis=0)  # unique rows
+    print("number of unique solutions: " + str(len(unique_rows)))
+    print("unique solutions:")
+    for row in unique_rows:
+        print(row.tolist())
