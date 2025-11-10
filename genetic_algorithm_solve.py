@@ -1,14 +1,25 @@
 import random as rd
 import numpy as np
 from numpy.random import choice
+import matplotlib.pyplot as plt
 
-class Experiment:
-    def __init__(self, population_size, table_size, seed=None, iterations=1000, crossover_rate=0.7, mutation_rate=0.01):
+class GeneticExperiment:
+    def __init__(self, population_size=150, table_size=8, seed=None, iterations=1000, crossover_rate=0.7, mutation_rate=0.01):
         self.population_size = population_size
         self.table_size = table_size
         self.iterations = iterations
         self.crossover_rate = crossover_rate
         self.mutation_rate = mutation_rate
+
+        self.history = {
+            'generation': [],
+            'best_fitness': [],
+            'avg_fitness': [],
+            'worst_fitness': [],
+            'std_fitness': [],
+            'diversity': [],  # genetic diversity metric
+            'best_individual': []
+        }
 
         # permetti di settare un seed per la riproducibilità
         self.seed = seed
@@ -20,6 +31,24 @@ class Experiment:
         self.population_probabilities = np.zeros(population_size, dtype=float) # probabilities for selection
         self.fitness_values = np.zeros(population_size, dtype=int)
         self.initial_population() # fill initial population
+
+
+    def calculate_diversity(self):
+        """Calculate genetic diversity as the average pairwise difference between individuals"""
+        unique_individuals = len(np.unique(self.population, axis=0))
+        return unique_individuals / self.population_size
+
+    def record_generation(self, generation):
+        """Record statistics for the current generation"""
+        self.history['generation'].append(generation)
+        self.history['best_fitness'].append(np.min(self.fitness_values))
+        self.history['avg_fitness'].append(np.mean(self.fitness_values))
+        self.history['worst_fitness'].append(np.max(self.fitness_values))
+        self.history['std_fitness'].append(np.std(self.fitness_values))
+        self.history['diversity'].append(self.calculate_diversity())
+        
+        best_idx = np.argmin(self.fitness_values)
+        self.history['best_individual'].append(self.population[best_idx].copy())
 
 
     def initial_population(self):
@@ -137,6 +166,8 @@ class Experiment:
             for i, individual in enumerate(self.population):
                 fitness = self.fitness_function(individual)
                 self.fitness_values[i] = fitness
+            
+            self.record_generation(iteration)
 
             # print("current fitness values ", iteration, ":\n", self.fitness_values)
 
@@ -176,40 +207,164 @@ class Experiment:
         # print("current fitness values ", iteration, ":\n", self.fitness_values)
         # print("current population ", iteration, ":\n", self.population)
         return False , self.population , self.fitness_values , self.iterations
+    
+    def visualize_convergence_comparison(self, other_experiments=None):
+        """Compare convergence of multiple runs"""
+        plt.figure(figsize=(12, 6))
+        
+        plt.plot(self.history['generation'], self.history['best_fitness'], 
+                linewidth=2, label='This Run', alpha=0.8)
+        
+        if other_experiments:
+            for idx, exp in enumerate(other_experiments):
+                plt.plot(exp.history['generation'], exp.history['best_fitness'], 
+                        linewidth=1, alpha=0.5, label=f'Run {idx+1}')
+        
+        plt.xlabel('Generation', fontsize=12)
+        plt.ylabel('Best Fitness', fontsize=12)
+        plt.title('Convergence Comparison Across Multiple Runs', fontsize=14, fontweight='bold')
+        plt.legend()
+        plt.grid(True, alpha=0.3)
+        plt.axhline(y=0, color='green', linestyle='--', alpha=0.5, label='Optimal')
+        plt.show()
 
-solutions = []
-for i in range(500):
-    print(f"--- Run {i+1} ---")
-    exp = Experiment(population_size=250, table_size=8, iterations=500, mutation_rate=0.15)
-    # in generale più iterazioni passano più la soluzione raggiunge un minimo locale e quindi più improbabile che trova
-    # una soluzione se sono passate tante iterazioni
-    res , sol , fitness , it = exp.genetic_solve()
-    solutions.append((res,sol,it))
-    if res:
-        print(f"Run {i+1}: Solution found in {it} iterations with fitness {fitness}: {sol}")
-    else:
-        print(f"Run {i+1}: No solution found in {it} iterations. , Best fitness: {min(fitness)}, average fitness: {np.mean(fitness)}, best Solution: {sol[np.argmin(fitness)]}")
+    def visualize_board_evolution(self):
+        """Show how the best solution evolves over generations"""
+        n_snapshots = min(9, len(self.history['generation']))
+        snapshot_indices = np.linspace(0, len(self.history['generation'])-1, n_snapshots, dtype=int)
+        
+        fig, axes = plt.subplots(3, 3, figsize=(12, 12))
+        axes = axes.flatten()
+        
+        for idx, snapshot_idx in enumerate(snapshot_indices):
+            generation = self.history['generation'][snapshot_idx]
+            fitness = self.history['best_fitness'][snapshot_idx]
+            individual = self.history['best_individual'][snapshot_idx]
+            
+            board = np.zeros((self.table_size, self.table_size))
+            for col, row in enumerate(individual):
+                if 0 <= row < self.table_size:
+                    board[row, col] = 1
+            
+            axes[idx].imshow(board, cmap='RdYlGn', interpolation='nearest')
+            axes[idx].set_title(f'Gen {generation}\nFitness={fitness}')
+            axes[idx].set_xticks(range(self.table_size))
+            axes[idx].set_yticks(range(self.table_size))
+            axes[idx].grid(False)
+            
+            # Add queen symbols
+            for col, row in enumerate(individual):
+                if 0 <= row < self.table_size:
+                    axes[idx].text(col, row, '♛', ha='center', va='center', fontsize=16, color='black')
+        
+        # Hide unused subplots
+        for idx in range(n_snapshots, 9):
+            axes[idx].axis('off')
+        
+        plt.suptitle('Best Solution Evolution', fontsize=16, fontweight='bold')
+        plt.tight_layout()
+        plt.show()
 
-iterations = []
-chess_arr = []
-for res, sol, it in solutions:
-    if res:
-        iterations.append(it)
-        chess_arr.append(np.asarray(sol))
+    def visualize_evolution(self):
+        """Visualize the evolution of the genetic algorithm"""
+        fig, axes = plt.subplots(2, 2, figsize=(15, 10))
+        
+        generations = self.history['generation']
+        
+        # 1. Fitness Evolution
+        ax1 = axes[0, 0]
+        ax1.plot(generations, self.history['best_fitness'], label='Best', linewidth=2, color='green')
+        ax1.plot(generations, self.history['avg_fitness'], label='Average', linewidth=2, color='blue')
+        ax1.plot(generations, self.history['worst_fitness'], label='Worst', linewidth=2, color='red', alpha=0.5)
+        ax1.fill_between(generations, 
+                         np.array(self.history['avg_fitness']) - np.array(self.history['std_fitness']),
+                         np.array(self.history['avg_fitness']) + np.array(self.history['std_fitness']),
+                         alpha=0.2, color='blue')
+        ax1.set_xlabel('Generation', fontsize=12)
+        ax1.set_ylabel('Fitness (Conflicts)', fontsize=12)
+        ax1.set_title('Fitness Evolution', fontsize=14, fontweight='bold')
+        ax1.legend()
+        ax1.grid(True, alpha=0.3)
+        ax1.axhline(y=0, color='green', linestyle='--', alpha=0.5, label='Optimal')
+        
+        # 2. Genetic Diversity
+        ax2 = axes[0, 1]
+        ax2.plot(generations, self.history['diversity'], linewidth=2, color='purple')
+        ax2.set_xlabel('Generation', fontsize=12)
+        ax2.set_ylabel('Diversity (Unique Individuals Ratio)', fontsize=12)
+        ax2.set_title('Population Diversity', fontsize=14, fontweight='bold')
+        ax2.grid(True, alpha=0.3)
+        ax2.set_ylim([0, 1])
 
-num_runs = len(solutions)
-num_solutions = len(iterations)
+        # 3. Fitness Improvement Rate
+        ax3 = axes[1, 0]
+        if len(self.history['best_fitness']) > 1:
+            improvements = [self.history['best_fitness'][i] - self.history['best_fitness'][i+1] 
+                          for i in range(len(self.history['best_fitness'])-1)]
+            ax3.plot(generations[1:], improvements, linewidth=1, color='orange', alpha=0.7)
+            ax3.axhline(y=0, color='black', linestyle='-', linewidth=0.5)
+            ax3.set_xlabel('Generation', fontsize=12)
+            ax3.set_ylabel('Best Fitness Change', fontsize=12)
+            ax3.set_title('Fitness Improvement Rate', fontsize=14, fontweight='bold')
+            ax3.grid(True, alpha=0.3)
+        
+        # 4. Final Best Board
+        ax4 = axes[1, 1]
+        if self.history['best_individual']:
+            best_individual = self.history['best_individual'][-1]
+            board = np.zeros((self.table_size, self.table_size))
+            for col, row in enumerate(best_individual):
+                if 0 <= row < self.table_size:
+                    board[row, col] = 1
+            
+            ax4.imshow(board, cmap='RdYlGn', interpolation='nearest')
+            ax4.set_title(f'Best Solution (Fitness={self.history["best_fitness"][-1]})', 
+                         fontsize=14, fontweight='bold')
+            ax4.set_xticks(range(self.table_size))
+            ax4.set_yticks(range(self.table_size))
+            ax4.grid(False)
+            
+            # Add queen symbols
+            for col, row in enumerate(best_individual):
+                if 0 <= row < self.table_size:
+                    ax4.text(col, row, '♛', ha='center', va='center', fontsize=20, color='black')
+        
+        plt.tight_layout()
+        plt.show()
 
-print(f"percentage of solutions found  {num_solutions/num_runs:.2f}")
+# solutions = []
+# for i in range(500):
+#     print(f"--- Run {i+1} ---")
+#     exp = Experiment(population_size=250, table_size=8, iterations=500, mutation_rate=0.15)
+#     # in generale più iterazioni passano più la soluzione raggiunge un minimo locale e quindi più improbabile che trova
+#     # una soluzione se sono passate tante iterazioni
+#     res , sol , fitness , it = exp.genetic_solve()
+#     solutions.append((res,sol,it))
+#     if res:
+#         print(f"Run {i+1}: Solution found in {it} iterations with fitness {fitness}: {sol}")
+#     else:
+#         print(f"Run {i+1}: No solution found in {it} iterations. , Best fitness: {min(fitness)}, average fitness: {np.mean(fitness)}, best Solution: {sol[np.argmin(fitness)]}")
 
-if num_solutions == 0:
-    print("average iterations for solutions: N/A (no solutions)")
-    print("number of unique solutions: 0")
-else:
-    print("average iterations for solutions " + str(np.average(iterations)))
-    stacked = np.vstack(chess_arr)            # shape: (num_solutions, table_size)
-    unique_rows = np.unique(stacked, axis=0)  # unique rows
-    print("number of unique solutions: " + str(len(unique_rows)))
-    print("unique solutions:")
-    for row in unique_rows:
-        print(row.tolist())
+# iterations = []
+# chess_arr = []
+# for res, sol, it in solutions:
+#     if res:
+#         iterations.append(it)
+#         chess_arr.append(np.asarray(sol))
+
+# num_runs = len(solutions)
+# num_solutions = len(iterations)
+
+# print(f"percentage of solutions found  {num_solutions/num_runs:.2f}")
+
+# if num_solutions == 0:
+#     print("average iterations for solutions: N/A (no solutions)")
+#     print("number of unique solutions: 0")
+# else:
+#     print("average iterations for solutions " + str(np.average(iterations)))
+#     stacked = np.vstack(chess_arr)            # shape: (num_solutions, table_size)
+#     unique_rows = np.unique(stacked, axis=0)  # unique rows
+#     print("number of unique solutions: " + str(len(unique_rows)))
+#     print("unique solutions:")
+#     for row in unique_rows:
+#         print(row.tolist())

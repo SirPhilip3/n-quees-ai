@@ -3,7 +3,7 @@ import numpy as np
 import math
 import matplotlib.pyplot as plt
 
-class Experiment:
+class AnnealingExperiment:
     def __init__(self, initial_temperature=100, max_iterations=1000, table_size=8, schedule_type='linear', cooling_rate=1, seed=None):
         self.initial_temperature = initial_temperature
         self.max_iterations = max_iterations
@@ -42,17 +42,15 @@ class Experiment:
                 i += 1
 
     def linear_schedule(self):
-        self.schedule = [self.initial_temperature - (i * self.cooling_rate) for i in range(self.max_iterations)]  
-        pass
+        decrement = self.initial_temperature / self.max_iterations
+        self.schedule = [self.initial_temperature - (i * decrement) for i in range(self.max_iterations)]  
 
     def exponential_schedule(self):
         self.schedule = [self.initial_temperature * (self.cooling_rate ** i) for i in range(self.max_iterations)]
-        pass
 
     def logarithmic_schedule(self):
-        K = 100   # costante di shift importante
-        self.schedule = [self.initial_temperature / math.log(i + K) for i in range(1, self.max_iterations + 1)]
-        pass
+        # K = 100 
+        self.schedule = [self.initial_temperature / (1 + math.log(1 + i)) for i in range(self.max_iterations)]
 
     def fitness_function(self, state): 
         # somma delle volte che ogni regina si attacca
@@ -93,9 +91,11 @@ class Experiment:
             neighbor_state[i] = (row, col, 0)  # Reset fitness
         return neighbor_state
 
+    # return current state and score to check if solution found
     def simulated_annealing (self , initial ) :
         current = initial
         current_score , current = self.fitness_function(current)
+        # this should be the iterations over the temperature 
         for T in self.schedule:
             self.history.append((T, current_score, current))
 
@@ -103,12 +103,12 @@ class Experiment:
             
             if current_score == 0: #! se 0 allora significa che nessuna regina si attacca = soluzione trovata
                 print("Solution found: ", current)
-                return current
+                return current, current_score
             
             if T == 0:
                 print("Final state: ", current)
-                return current
-        
+                return current, current_score
+
 
             next = self.neighbor( current ) # choice a neighbor state
             next_score , next = self.fitness_function( next )
@@ -126,15 +126,146 @@ class Experiment:
                     current, current_score = next , next_score
         
         #print("Final state: ", current)
-        return current
+        return current , current_score
     
     def visualize_history(self):
+        """Enhanced visualization showing fitness evolution over iterations"""
+        iterations = list(range(len(self.history)))
         temperatures = [record[0] for record in self.history]
         fitness_values = [record[1] for record in self.history]
-        plt.plot(temperatures, fitness_values)
-        plt.xlabel('Temperature')
-        plt.ylabel('Fitness Value')
-        plt.title('Simulated Annealing Progress')
+        
+        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 8))
+        
+        # Plot fitness over iterations
+        ax1.plot(iterations, fitness_values, linewidth=2, color='blue', alpha=0.7)
+        ax1.set_xlabel('Iteration', fontsize=12)
+        ax1.set_ylabel('Fitness (Conflicts)', fontsize=12)
+        ax1.set_title('Fitness Evolution Over Iterations', fontsize=14, fontweight='bold')
+        ax1.grid(True, alpha=0.3)
+        ax1.axhline(y=0, color='green', linestyle='--', label='Optimal Solution')
+        ax1.legend()
+        
+        # Plot temperature over iterations
+        ax2.plot(iterations, temperatures, linewidth=2, color='red', alpha=0.7)
+        ax2.set_xlabel('Iteration', fontsize=12)
+        ax2.set_ylabel('Temperature', fontsize=12)
+        ax2.set_title('Temperature Schedule', fontsize=14, fontweight='bold')
+        ax2.grid(True, alpha=0.3)
+        
+        plt.tight_layout()
+        plt.show()
+    
+    def visualize_comprehensive(self):
+        """Comprehensive visualization with multiple subplots"""
+        iterations = list(range(len(self.history)))
+        temperatures = [record[0] for record in self.history]
+        fitness_values = [record[1] for record in self.history]
+        
+        fig = plt.figure(figsize=(15, 10))
+        
+        # 1. Fitness over time
+        ax1 = plt.subplot(2, 3, 1)
+        ax1.plot(iterations, fitness_values, linewidth=2, color='blue')
+        ax1.set_xlabel('Iteration')
+        ax1.set_ylabel('Fitness (Conflicts)')
+        ax1.set_title('Fitness Evolution')
+        ax1.grid(True, alpha=0.3)
+        ax1.axhline(y=0, color='green', linestyle='--', alpha=0.5)
+        
+        # 2. Temperature over time
+        ax2 = plt.subplot(2, 3, 2)
+        ax2.plot(iterations, temperatures, linewidth=2, color='red')
+        ax2.set_xlabel('Iteration')
+        ax2.set_ylabel('Temperature')
+        ax2.set_title('Temperature Schedule')
+        ax2.grid(True, alpha=0.3)
+        
+        # 3. Fitness vs Temperature (phase diagram)
+        ax3 = plt.subplot(2, 3, 3)
+        scatter = ax3.scatter(temperatures, fitness_values, c=iterations, cmap='viridis', alpha=0.6)
+        ax3.set_xlabel('Temperature')
+        ax3.set_ylabel('Fitness (Conflicts)')
+        ax3.set_title('Phase Diagram')
+        ax3.grid(True, alpha=0.3)
+        plt.colorbar(scatter, ax=ax3, label='Iteration')
+        
+        # 4. Fitness improvement rate
+        ax4 = plt.subplot(2, 3, 4)
+        if len(fitness_values) > 1:
+            improvements = [fitness_values[i] - fitness_values[i+1] for i in range(len(fitness_values)-1)]
+            ax4.plot(iterations[1:], improvements, linewidth=1, color='green', alpha=0.7)
+            ax4.axhline(y=0, color='black', linestyle='-', linewidth=0.5)
+            ax4.set_xlabel('Iteration')
+            ax4.set_ylabel('Fitness Change')
+            ax4.set_title('Fitness Improvement Rate')
+            ax4.grid(True, alpha=0.3)
+        
+        # 5. Acceptance probability estimation
+        ax5 = plt.subplot(2, 3, 5)
+        if len(fitness_values) > 1:
+            # Calculate probability of accepting worse solutions at each temperature
+            prob_accept = [math.exp(-1 / max(T, 0.001)) if T > 0 else 0 for T in temperatures]
+            ax5.plot(iterations, prob_accept, linewidth=2, color='purple')
+            ax5.set_xlabel('Iteration')
+            ax5.set_ylabel('P(accept worse solution with ΔE=1)')
+            ax5.set_title('Acceptance Probability')
+            ax5.grid(True, alpha=0.3)
+        
+        # 6. Final board state
+        ax6 = plt.subplot(2, 3, 6)
+        if self.history:
+            final_state = self.history[-1][2]
+            board = np.zeros((self.n, self.n))
+            for row, col, _ in final_state:
+                board[row, col] = 1
+            ax6.imshow(board, cmap='RdYlGn', interpolation='nearest')
+            ax6.set_title(f'Final Board (Fitness={self.history[-1][1]})')
+            ax6.set_xticks(range(self.n))
+            ax6.set_yticks(range(self.n))
+            ax6.grid(False)
+            
+            # Add queen symbols
+            for row, col, _ in final_state:
+                ax6.text(col, row, '♛', ha='center', va='center', fontsize=20, color='black')
+        
+        plt.tight_layout()
+        plt.show()
+    
+    def visualize_board_evolution(self, save_path=None):
+        """Visualize how the board state changes over time"""
+        # Select key moments to display
+        n_snapshots = min(9, len(self.history))
+        snapshot_indices = np.linspace(0, len(self.history)-1, n_snapshots, dtype=int)
+        
+        fig, axes = plt.subplots(3, 3, figsize=(12, 12))
+        axes = axes.flatten()
+        
+        for idx, snapshot_idx in enumerate(snapshot_indices):
+            T, fitness, state = self.history[snapshot_idx]
+            
+            board = np.zeros((self.n, self.n))
+            for row, col, _ in state:
+                board[row, col] = 1
+            
+            axes[idx].imshow(board, cmap='RdYlGn', interpolation='nearest')
+            axes[idx].set_title(f'Iter {snapshot_idx}\nT={T:.2f}, F={fitness}')
+            axes[idx].set_xticks(range(self.n))
+            axes[idx].set_yticks(range(self.n))
+            axes[idx].grid(False)
+            
+            # Add queen symbols
+            for row, col, _ in state:
+                axes[idx].text(col, row, '♛', ha='center', va='center', fontsize=16, color='black')
+        
+        # Hide unused subplots
+        for idx in range(n_snapshots, 9):
+            axes[idx].axis('off')
+        
+        plt.suptitle('Board Evolution During Simulated Annealing', fontsize=16, fontweight='bold')
+        plt.tight_layout()
+        
+        if save_path:
+            plt.savefig(save_path, dpi=300, bbox_inches='tight')
         plt.show()
         
 
