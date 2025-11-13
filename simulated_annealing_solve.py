@@ -14,6 +14,8 @@ class AnnealingExperiment:
 
         self.history = []  # to keep track of the states visited
 
+        self.acceptance_history = []  # to track acceptance decisions
+
         if schedule_type == 'linear':
             self.linear_schedule()
         elif schedule_type == 'exponential':
@@ -80,6 +82,7 @@ class AnnealingExperiment:
         # Generate neighboring states by moving each queen to a different row in its column
         neighbor_state = state.copy()
         #print("Generating neighbor for state: ", neighbor_state)
+        #! maybe consider a different neighbor selection
         queen = rd.randint(0, self.n - 1) 
 
         current_row, col, _ = neighbor_state[queen]
@@ -90,26 +93,48 @@ class AnnealingExperiment:
             row, col, _ = neighbor_state[i]
             neighbor_state[i] = (row, col, 0)  # Reset fitness
         return neighbor_state
+    
+    def neighbor_alternative(self, state, n_moves=2):
+        neighbor_state = state.copy()
+    
+        # Select random queens to move
+        queens_to_move = rd.sample(range(self.n), min(n_moves, self.n))
+        
+        for queen in queens_to_move:
+            current_row, col, _ = neighbor_state[queen]
+            new_row = rd.choice([r for r in range(self.n) if r != current_row])
+            neighbor_state[queen] = (new_row, col, 0)
+        
+        # Reset fitness
+        for i in range(self.n):
+            row, col, _ = neighbor_state[i]
+            neighbor_state[i] = (row, col, 0)
+        
+        return neighbor_state
+
 
     # return current state and score to check if solution found
     def simulated_annealing (self , initial ) :
         current = initial
         current_score , current = self.fitness_function(current)
         # this should be the iterations over the temperature 
+        i = 0
         for T in self.schedule:
+            i += 1
             self.history.append((T, current_score, current))
 
             #print("Temperature: ", T)
             
             if current_score == 0: #! se 0 allora significa che nessuna regina si attacca = soluzione trovata
-                print("Solution found: ", current)
+                # print("Solution found: ", current)
                 return current, current_score
             
             if T == 0:
-                print("Final state: ", current)
+                # print("Final state: ", current)
                 return current, current_score
 
 
+            # next = self.neighbor_alternative( current ) # choice a neighbor state
             next = self.neighbor( current ) # choice a neighbor state
             next_score , next = self.fitness_function( next )
 
@@ -119,16 +144,46 @@ class AnnealingExperiment:
             de = next_score - current_score
             
             #print("Delta E: ", de)
-            if de < 0:
+            if de < 0: 
                 current, current_score = next , next_score
+
+                self.acceptance_history.append({
+                    'iteration': i,
+                    'temperature': T,
+                    'delta_e': de,
+                    'probability': 1.0,
+                    'random_value': None,
+                    'accepted': True,
+                    'reason': 'better'
+                })
+
             else :
-                if rd.random() < math.exp( - de / T ) :
+                probability = math.exp(-de / T)
+                random_value = rd.random()
+                accepted = random_value < probability
+                
+                self.acceptance_history.append({
+                    'iteration': i,
+                    'temperature': T,
+                    'delta_e': de,
+                    'probability': probability,
+                    'random_value': random_value,
+                    'accepted': accepted,
+                    'reason': 'worse_accepted' if accepted else 'worse_rejected'
+                })
+                
+                if accepted:
                     current, current_score = next , next_score
+                # if rd.random() < math.exp( - de / T ) :
+                #     current, current_score = next , next_score
         
         #print("Final state: ", current)
         return current , current_score
-    
-    def visualize_history(self):
+
+
+
+
+    def visualize_history(self, save_path=None):
         """Enhanced visualization showing fitness evolution over iterations"""
         iterations = list(range(len(self.history)))
         temperatures = [record[0] for record in self.history]
@@ -153,9 +208,13 @@ class AnnealingExperiment:
         ax2.grid(True, alpha=0.3)
         
         plt.tight_layout()
-        plt.show()
+        if save_path:
+            plt.savefig(save_path, dpi=300, bbox_inches='tight')
+            plt.close(fig)
+        else:
+            plt.show()
     
-    def visualize_comprehensive(self):
+    def visualize_comprehensive(self, save_path=None):
         """Comprehensive visualization with multiple subplots"""
         iterations = list(range(len(self.history)))
         temperatures = [record[0] for record in self.history]
@@ -202,14 +261,35 @@ class AnnealingExperiment:
         
         # 5. Acceptance probability estimation
         ax5 = plt.subplot(2, 3, 5)
-        if len(fitness_values) > 1:
-            # Calculate probability of accepting worse solutions at each temperature
-            prob_accept = [math.exp(-1 / max(T, 0.001)) if T > 0 else 0 for T in temperatures]
-            ax5.plot(iterations, prob_accept, linewidth=2, color='purple')
+        if len(self.acceptance_history) > 1:
+            # Count acceptance statistics
+            worse_accepted = [d for d in self.acceptance_history if d['reason'] == 'worse_accepted']
+            worse_rejected = [d for d in self.acceptance_history if d['reason'] == 'worse_rejected']
+            better = [d for d in self.acceptance_history if d['reason'] == 'better']
+            
+            # Plot acceptance probability over time
+            accepted_probs = [d['probability'] for d in self.acceptance_history if d['reason'] == 'worse_accepted']
+            accepted_iters = [d['iteration'] for d in self.acceptance_history if d['reason'] == 'worse_accepted']
+            
+            rejected_probs = [d['probability'] for d in self.acceptance_history if d['reason'] == 'worse_rejected']
+            rejected_iters = [d['iteration'] for d in self.acceptance_history if d['reason'] == 'worse_rejected']
+            
+            # Plot accepted worse moves
+            if accepted_iters:
+                ax5.scatter(accepted_iters, accepted_probs, color='green', marker='o', 
+                           s=30, alpha=0.6, label=f'Accepted Worse ({len(worse_accepted)})')
+            
+            # Plot rejected worse moves
+            if rejected_iters:
+                ax5.scatter(rejected_iters, rejected_probs, color='red', marker='x', 
+                           s=30, alpha=0.4, label=f'Rejected Worse ({len(worse_rejected)})')
+            
             ax5.set_xlabel('Iteration')
-            ax5.set_ylabel('P(accept worse solution with ΔE=1)')
-            ax5.set_title('Acceptance Probability')
+            ax5.set_ylabel('Acceptance Probability')
+            ax5.set_title(f'Worse Moves: {len(better)} Better, {len(worse_accepted)} Accepted, {len(worse_rejected)} Rejected')
+            ax5.legend(fontsize=9)
             ax5.grid(True, alpha=0.3)
+            ax5.set_ylim([0, 1.05])
         
         # 6. Final board state
         ax6 = plt.subplot(2, 3, 6)
@@ -229,7 +309,11 @@ class AnnealingExperiment:
                 ax6.text(col, row, '♛', ha='center', va='center', fontsize=20, color='black')
         
         plt.tight_layout()
-        plt.show()
+        if save_path:
+            plt.savefig(save_path, dpi=300, bbox_inches='tight')
+            plt.close(fig)
+        else:
+            plt.show()
     
     def visualize_board_evolution(self, save_path=None):
         """Visualize how the board state changes over time"""
@@ -266,10 +350,7 @@ class AnnealingExperiment:
         
         if save_path:
             plt.savefig(save_path, dpi=300, bbox_inches='tight')
-        plt.show()
+            plt.close(fig)
+        else:
+            plt.show()
         
-
-# for i in range(1000):
-#     exp = Experiment(initial_temperature=100, max_iterations= 1000, table_size=8, schedule_type='logarithmic')
-#     result = exp.simulated_annealing(exp.current_state)
-#     print(result)

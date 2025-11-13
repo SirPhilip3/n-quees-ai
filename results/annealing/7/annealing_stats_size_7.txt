@@ -1,0 +1,25 @@
+Simulated Annealing Solver Statistics
+
+Schedule Type: linear
+Total Runs: 100
+Solutions Found: 21
+Success Rate: 21.00%
+Average Final Score: 3.04
+Median Final Score: 4.00
+Average Iterations to Solution: 1546.33
+
+Schedule Type: exponential
+Total Runs: 100
+Solutions Found: 94
+Success Rate: 94.00%
+Average Final Score: 0.12
+Median Final Score: 0.00
+Average Iterations to Solution: 660.45
+
+Schedule Type: logarithmic
+Total Runs: 100
+Solutions Found: 20
+Success Rate: 20.00%
+Average Final Score: 9.78
+Median Final Score: 10.00
+Average Iterations to Solution: 1133.80

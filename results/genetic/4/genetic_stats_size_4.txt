@@ -1,0 +1,18 @@
+
+Overall Performance:
+  Total Runs: 100
+  Successful: 100 (100.0%)
+  Failed: 0 (0.0%)
+
+Successful Runs Statistics:
+  Iterations to Solution:
+    Min: 0
+    Max: 0
+    Mean: 0.00
+    Median: 0
+    Std: 0.00
+
+  Unique Solutions Found: 2
+  Most Common Solutions:
+    [np.int64(1), np.int64(3), np.int64(0), np.int64(2)]: 51 times (51.0%)
+    [np.int64(2), np.int64(0), np.int64(3), np.int64(1)]: 49 times (49.0%)

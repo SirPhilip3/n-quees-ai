@@ -50,7 +50,6 @@ class GeneticExperiment:
         best_idx = np.argmin(self.fitness_values)
         self.history['best_individual'].append(self.population[best_idx].copy())
 
-
     def initial_population(self):
         for i in range(self.population_size):
             current_table = self.population[i] 
@@ -129,21 +128,6 @@ class GeneticExperiment:
                     total_q += 1
                 if abs(row_q - row_j) == abs(q - col_j):
                     total_q += 1
-
-            # remaining = individual[:q] + individual[q+1:]
-            
-            # i = 0
-            # for row_j in remaining:
-            #     if i == q:
-            #         i += 1
-            #     if row_q == row_j:
-            #         total_q += 1
-            #     # if q == col_j:
-            #     #     total_q += 1
-            #     if abs(row_q - row_j) == abs(q - i):
-            #         total_q += 1
-
-            #     i += 1
             
             total += total_q
 
@@ -152,7 +136,7 @@ class GeneticExperiment:
     def check_solution(self):
         for index, fitness in enumerate(self.fitness_values):
             if fitness == 0:
-                print("Solution found!")
+                # print("Solution found!")
                 return True , index
         return False, None
 
@@ -164,14 +148,14 @@ class GeneticExperiment:
             # print("current population ", iteration, ":\n", self.population)
 
             for i, individual in enumerate(self.population):
-                fitness = self.fitness_function(individual)
-                self.fitness_values[i] = fitness
+                self.fitness_values[i] = self.fitness_function(individual)
+                # self.fitness_values[i] = fitness
             
             self.record_generation(iteration)
 
             # print("current fitness values ", iteration, ":\n", self.fitness_values)
 
-            ret , sol_indx = self.check_solution()
+            ret , sol_indx = self.check_solution() #? could return only sol_index
             if ret:
                 # print("Solution: ", self.population[sol_indx])
                 # print("current fitness values ", iteration, ":\n", self.fitness_values)
@@ -188,7 +172,7 @@ class GeneticExperiment:
             #? se dispari uno va a vanti e basta ???
             # per ora consideriamo che la popolazione sia sempre pari
             selected_couples = []
-            while len(selected_couples) < self.population_size // 2:
+            while len(selected_couples) < self.population_size // 2: #? fare una funzione
                 parent1_idx = rd.randint(0, self.population_size - 1)
                 parent2_idx = rd.randint(0, self.population_size - 1)
                 parents = (parent1_idx, parent2_idx)
@@ -207,28 +191,8 @@ class GeneticExperiment:
         # print("current fitness values ", iteration, ":\n", self.fitness_values)
         # print("current population ", iteration, ":\n", self.population)
         return False , self.population , self.fitness_values , self.iterations
-    
-    def visualize_convergence_comparison(self, other_experiments=None):
-        """Compare convergence of multiple runs"""
-        plt.figure(figsize=(12, 6))
-        
-        plt.plot(self.history['generation'], self.history['best_fitness'], 
-                linewidth=2, label='This Run', alpha=0.8)
-        
-        if other_experiments:
-            for idx, exp in enumerate(other_experiments):
-                plt.plot(exp.history['generation'], exp.history['best_fitness'], 
-                        linewidth=1, alpha=0.5, label=f'Run {idx+1}')
-        
-        plt.xlabel('Generation', fontsize=12)
-        plt.ylabel('Best Fitness', fontsize=12)
-        plt.title('Convergence Comparison Across Multiple Runs', fontsize=14, fontweight='bold')
-        plt.legend()
-        plt.grid(True, alpha=0.3)
-        plt.axhline(y=0, color='green', linestyle='--', alpha=0.5, label='Optimal')
-        plt.show()
 
-    def visualize_board_evolution(self):
+    def visualize_board_evolution(self, save_path=None):
         """Show how the best solution evolves over generations"""
         n_snapshots = min(9, len(self.history['generation']))
         snapshot_indices = np.linspace(0, len(self.history['generation'])-1, n_snapshots, dtype=int)
@@ -263,9 +227,13 @@ class GeneticExperiment:
         
         plt.suptitle('Best Solution Evolution', fontsize=16, fontweight='bold')
         plt.tight_layout()
-        plt.show()
+        if save_path:
+            plt.savefig(save_path, dpi=300, bbox_inches='tight')
+            plt.close(fig)
+        else:
+            plt.show()
 
-    def visualize_evolution(self):
+    def visualize_evolution(self, save_path=None):
         """Visualize the evolution of the genetic algorithm"""
         fig, axes = plt.subplots(2, 2, figsize=(15, 10))
         
@@ -330,41 +298,8 @@ class GeneticExperiment:
                     ax4.text(col, row, '♛', ha='center', va='center', fontsize=20, color='black')
         
         plt.tight_layout()
-        plt.show()
-
-# solutions = []
-# for i in range(500):
-#     print(f"--- Run {i+1} ---")
-#     exp = Experiment(population_size=250, table_size=8, iterations=500, mutation_rate=0.15)
-#     # in generale più iterazioni passano più la soluzione raggiunge un minimo locale e quindi più improbabile che trova
-#     # una soluzione se sono passate tante iterazioni
-#     res , sol , fitness , it = exp.genetic_solve()
-#     solutions.append((res,sol,it))
-#     if res:
-#         print(f"Run {i+1}: Solution found in {it} iterations with fitness {fitness}: {sol}")
-#     else:
-#         print(f"Run {i+1}: No solution found in {it} iterations. , Best fitness: {min(fitness)}, average fitness: {np.mean(fitness)}, best Solution: {sol[np.argmin(fitness)]}")
-
-# iterations = []
-# chess_arr = []
-# for res, sol, it in solutions:
-#     if res:
-#         iterations.append(it)
-#         chess_arr.append(np.asarray(sol))
-
-# num_runs = len(solutions)
-# num_solutions = len(iterations)
-
-# print(f"percentage of solutions found  {num_solutions/num_runs:.2f}")
-
-# if num_solutions == 0:
-#     print("average iterations for solutions: N/A (no solutions)")
-#     print("number of unique solutions: 0")
-# else:
-#     print("average iterations for solutions " + str(np.average(iterations)))
-#     stacked = np.vstack(chess_arr)            # shape: (num_solutions, table_size)
-#     unique_rows = np.unique(stacked, axis=0)  # unique rows
-#     print("number of unique solutions: " + str(len(unique_rows)))
-#     print("unique solutions:")
-#     for row in unique_rows:
-#         print(row.tolist())
+        if save_path:
+            plt.savefig(save_path, dpi=300, bbox_inches='tight')
+            plt.close(fig)
+        else:
+            plt.show()

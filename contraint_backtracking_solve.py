@@ -4,37 +4,28 @@ import random as rd
 class ConstraintExperiment:
     def __init__(self, n, seed=None):
         self.n = n
-        self.matrix = np.zeros((n, n), dtype=int)
-        self.tried_positions = np.full((n, n), False, dtype=bool)
+        self.matrix = np.zeros((n, n), dtype=int) # ogni cella il numero di volte che è stata bloccata dalla regina , regina = -1
+        self.tried_positions = np.full((n, n), False, dtype=bool) # salva le posizioni già provate della prima regina nella prima colonna 
+        
+        #stats
         self.iteration = 0
-        # ogni cella il numero di volte che è stata bloccata dalla regina
-        # regina = -1
-        # salva le posizioni già provate della prima regina nella prima colonna 
+        self.backtracking_count = 0
 
         # permetti di settare un seed per la riproducibilità
         self.seed = seed
         if seed is not None:
             rd.seed(seed)
 
-    def print_matrix(self):
-        print(self.matrix)
-    
-    def print_tried_positions(self):
-        print(self.tried_positions)
-
     def add_blocked_pos(self, row, col):
         
         self.matrix[:,col] += 1 # tutta la colonna vietata
         self.matrix[row,:] += 1 # tutta la riga vietata
 
-        # block both diagonals that pass through (row, col)
         idx = np.arange(self.n)
-        # main diagonal (i - j == row - col) -> j = idx - (row - col)
         j_main = idx - (row - col)
         valid_main = (j_main >= 0) & (j_main < self.n)
         self.matrix[idx[valid_main], j_main[valid_main]] += 1
 
-        # anti-diagonal (i + j == row + col) -> j = (row + col) - idx
         j_anti = (row + col) - idx
         valid_anti = (j_anti >= 0) & (j_anti < self.n)
         self.matrix[idx[valid_anti], j_anti[valid_anti]] += 1
@@ -44,22 +35,18 @@ class ConstraintExperiment:
 
     def do_backtracking(self, row, col):
 
-        self.matrix[:,col] -= 1 # tutta la colonna vietata
-        self.matrix[row,:] -= 1 # tutta la riga vietata
+        self.matrix[:,col] -= 1 
+        self.matrix[row,:] -= 1 
 
-        # block both diagonals that pass through (row, col)
         idx = np.arange(self.n)
-        # main diagonal (i - j == row - col) -> j = idx - (row - col)
         j_main = idx - (row - col)
         valid_main = (j_main >= 0) & (j_main < self.n)
         self.matrix[idx[valid_main], j_main[valid_main]] -= 1
 
-        # anti-diagonal (i + j == row + col) -> j = (row + col) - idx
         j_anti = (row + col) - idx
         valid_anti = (j_anti >= 0) & (j_anti < self.n)
         self.matrix[idx[valid_anti], j_anti[valid_anti]] -= 1
 
-        # remove queen mark and mark this position as tried
         self.matrix[row, col] = 0
     
     def select_position(self, possibilities):
@@ -109,6 +96,7 @@ class ConstraintExperiment:
 
             if not possibilities:
                 # print("Backtracking needed")
+                self.backtracking_count += 1
 
                 col -= 1
                 if col < 0:
@@ -117,7 +105,7 @@ class ConstraintExperiment:
                     break
                 q_row = self.find_previous_queen_row(col)
                 self.do_backtracking(q_row, col)
-                self.tried_positions[:, col + 1] = False # test
+                self.tried_positions[:, col + 1] = False 
                 
             else:
                 selected_row = self.select_position(possibilities)
@@ -126,15 +114,17 @@ class ConstraintExperiment:
                 col += 1
             
             
-            self.print_matrix()
+            # print(self.matrix)
             # print("-----")
-            # self.print_tried_positions()
+            # print(self.tried_positions)
         solution_array = self.matrix_to_array() if sol else []
-        return (solution_array ,self.iteration, sol)
+        return (solution_array ,self.iteration, self.backtracking_count, sol)
+
+
 
 # stats = []
-# for i in range(4000):
-#     experiment = Experiment(8)
+# for i in range(2000):
+#     experiment = ConstraintExperiment(8)
 #     stats.append(experiment.constrain_backtracking_solve())
 
 # from collections import Counter, defaultdict
