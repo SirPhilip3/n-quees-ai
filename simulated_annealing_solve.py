@@ -24,7 +24,6 @@ class AnnealingExperiment:
             self.logarithmic_schedule()
         else:
             raise ValueError("Invalid schedule type. Choose 'linear', 'exponential', or 'logarithmic'.")
-        # self.schedule = [initial_temperature - i for i in range(initial_temperature)]  #! Simple linear schedule test
 
         # permetti di settare un seed per la riproducibilità
         self.seed = seed
@@ -36,9 +35,8 @@ class AnnealingExperiment:
     def set_initial_random_state(self):
         i = 0
         while i < self.n:
-            # da valutare se metere solo 1 per colonna come requisito iniziale
+
             row = rd.randint(0, self.n - 1)
-            # col = rd.randint(0, self.n - 1)
             if (row, i, 0) not in self.current_state:
                 self.current_state.append((row, i, 0))  # (row, col, fitness)
                 i += 1
@@ -51,7 +49,6 @@ class AnnealingExperiment:
         self.schedule = [self.initial_temperature * (self.cooling_rate ** i) for i in range(self.max_iterations)]
 
     def logarithmic_schedule(self):
-        # K = 100 
         self.schedule = [self.initial_temperature / (1 + math.log(1 + i)) for i in range(self.max_iterations)]
 
     def fitness_function(self, state): 
@@ -75,14 +72,11 @@ class AnnealingExperiment:
 
             s[q] = (row_q, col_q, total_q)
 
-        # print("State with fitness: ", state)
         return total , s
 
     def neighbor(self, state):
         # Generate neighboring states by moving each queen to a different row in its column
         neighbor_state = state.copy()
-        #print("Generating neighbor for state: ", neighbor_state)
-        #! maybe consider a different neighbor selection
         queen = rd.randint(0, self.n - 1) 
 
         current_row, col, _ = neighbor_state[queen]
@@ -93,25 +87,6 @@ class AnnealingExperiment:
             row, col, _ = neighbor_state[i]
             neighbor_state[i] = (row, col, 0)  # Reset fitness
         return neighbor_state
-    
-    def neighbor_alternative(self, state, n_moves=2):
-        neighbor_state = state.copy()
-    
-        # Select random queens to move
-        queens_to_move = rd.sample(range(self.n), min(n_moves, self.n))
-        
-        for queen in queens_to_move:
-            current_row, col, _ = neighbor_state[queen]
-            new_row = rd.choice([r for r in range(self.n) if r != current_row])
-            neighbor_state[queen] = (new_row, col, 0)
-        
-        # Reset fitness
-        for i in range(self.n):
-            row, col, _ = neighbor_state[i]
-            neighbor_state[i] = (row, col, 0)
-        
-        return neighbor_state
-
 
     # return current state and score to check if solution found
     def simulated_annealing (self , initial ) :
@@ -123,27 +98,17 @@ class AnnealingExperiment:
             i += 1
             self.history.append((T, current_score, current))
 
-            #print("Temperature: ", T)
-            
-            if current_score == 0: #! se 0 allora significa che nessuna regina si attacca = soluzione trovata
-                # print("Solution found: ", current)
+            if current_score == 0:
                 return current, current_score
             
             if T == 0:
-                # print("Final state: ", current)
                 return current, current_score
 
-
-            # next = self.neighbor_alternative( current ) # choice a neighbor state
             next = self.neighbor( current ) # choice a neighbor state
             next_score , next = self.fitness_function( next )
-
-            #print("Current state: ", current)
-            #print("Next state: ", next)
             
             de = next_score - current_score
             
-            #print("Delta E: ", de)
             if de < 0: 
                 current, current_score = next , next_score
 
@@ -174,14 +139,7 @@ class AnnealingExperiment:
                 
                 if accepted:
                     current, current_score = next , next_score
-                # if rd.random() < math.exp( - de / T ) :
-                #     current, current_score = next , next_score
-        
-        #print("Final state: ", current)
         return current , current_score
-
-
-
 
     def visualize_history(self, save_path=None):
         """Enhanced visualization showing fitness evolution over iterations"""
@@ -309,45 +267,6 @@ class AnnealingExperiment:
                 ax6.text(col, row, '♛', ha='center', va='center', fontsize=20, color='black')
         
         plt.tight_layout()
-        if save_path:
-            plt.savefig(save_path, dpi=300, bbox_inches='tight')
-            plt.close(fig)
-        else:
-            plt.show()
-    
-    def visualize_board_evolution(self, save_path=None):
-        """Visualize how the board state changes over time"""
-        # Select key moments to display
-        n_snapshots = min(9, len(self.history))
-        snapshot_indices = np.linspace(0, len(self.history)-1, n_snapshots, dtype=int)
-        
-        fig, axes = plt.subplots(3, 3, figsize=(12, 12))
-        axes = axes.flatten()
-        
-        for idx, snapshot_idx in enumerate(snapshot_indices):
-            T, fitness, state = self.history[snapshot_idx]
-            
-            board = np.zeros((self.n, self.n))
-            for row, col, _ in state:
-                board[row, col] = 1
-            
-            axes[idx].imshow(board, cmap='RdYlGn', interpolation='nearest')
-            axes[idx].set_title(f'Iter {snapshot_idx}\nT={T:.2f}, F={fitness}')
-            axes[idx].set_xticks(range(self.n))
-            axes[idx].set_yticks(range(self.n))
-            axes[idx].grid(False)
-            
-            # Add queen symbols
-            for row, col, _ in state:
-                axes[idx].text(col, row, '♛', ha='center', va='center', fontsize=16, color='black')
-        
-        # Hide unused subplots
-        for idx in range(n_snapshots, 9):
-            axes[idx].axis('off')
-        
-        plt.suptitle('Board Evolution During Simulated Annealing', fontsize=16, fontweight='bold')
-        plt.tight_layout()
-        
         if save_path:
             plt.savefig(save_path, dpi=300, bbox_inches='tight')
             plt.close(fig)

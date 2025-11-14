@@ -1,27 +1,27 @@
 
 Overall Performance:
   Total Runs: 100
-  Successful: 80 (80.0%)
-  Failed: 20 (20.0%)
+  Successful: 77 (77.0%)
+  Failed: 23 (23.0%)
 
 Successful Runs Statistics:
   Iterations to Solution:
     Min: 0
-    Max: 388
-    Mean: 38.39
+    Max: 345
+    Mean: 27.64
     Median: 0
-    Std: 97.16
+    Std: 72.03
 
   Unique Solutions Found: 4
   Most Common Solutions:
-    [np.int64(3), np.int64(0), np.int64(4), np.int64(1), np.int64(5), np.int64(2)]: 22 times (27.5%)
-    [np.int64(2), np.int64(5), np.int64(1), np.int64(4), np.int64(0), np.int64(3)]: 21 times (26.2%)
-    [np.int64(1), np.int64(3), np.int64(5), np.int64(0), np.int64(2), np.int64(4)]: 20 times (25.0%)
-    [np.int64(4), np.int64(2), np.int64(0), np.int64(5), np.int64(3), np.int64(1)]: 17 times (21.2%)
+    [np.int64(4), np.int64(2), np.int64(0), np.int64(5), np.int64(3), np.int64(1)]: 23 times (29.9%)
+    [np.int64(3), np.int64(0), np.int64(4), np.int64(1), np.int64(5), np.int64(2)]: 21 times (27.3%)
+    [np.int64(1), np.int64(3), np.int64(5), np.int64(0), np.int64(2), np.int64(4)]: 17 times (22.1%)
+    [np.int64(2), np.int64(5), np.int64(1), np.int64(4), np.int64(0), np.int64(3)]: 16 times (20.8%)
 
 Failed Runs Statistics:
   Final Fitness (Conflicts):
     Best: 2
-    Worst: 14
-    Mean: 2.72
+    Worst: 16
+    Mean: 2.71
     Median: 2

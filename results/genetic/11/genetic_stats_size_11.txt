@@ -1,28 +1,28 @@
 
 Overall Performance:
   Total Runs: 100
-  Successful: 33 (33.0%)
-  Failed: 67 (67.0%)
+  Successful: 36 (36.0%)
+  Failed: 64 (64.0%)
 
 Successful Runs Statistics:
   Iterations to Solution:
     Min: 0
-    Max: 408
-    Mean: 115.36
-    Median: 61
-    Std: 119.20
+    Max: 498
+    Mean: 144.17
+    Median: 59
+    Std: 165.29
 
-  Unique Solutions Found: 33
+  Unique Solutions Found: 35
   Most Common Solutions:
-    [np.int64(9), np.int64(5), np.int64(8), np.int64(2), np.int64(4), np.int64(10), np.int64(7), np.int64(0), np.int64(6), np.int64(3), np.int64(1)]: 1 times (3.0%)
-    [np.int64(1), np.int64(6), np.int64(8), np.int64(10), np.int64(4), np.int64(0), np.int64(3), np.int64(9), np.int64(7), np.int64(5), np.int64(2)]: 1 times (3.0%)
-    [np.int64(3), np.int64(5), np.int64(9), np.int64(1), np.int64(6), np.int64(10), np.int64(2), np.int64(0), np.int64(8), np.int64(4), np.int64(7)]: 1 times (3.0%)
-    [np.int64(7), np.int64(4), np.int64(8), np.int64(0), np.int64(2), np.int64(10), np.int64(6), np.int64(1), np.int64(9), np.int64(5), np.int64(3)]: 1 times (3.0%)
-    [np.int64(10), np.int64(8), np.int64(4), np.int64(0), np.int64(7), np.int64(3), np.int64(1), np.int64(6), np.int64(9), np.int64(5), np.int64(2)]: 1 times (3.0%)
+    [np.int64(6), np.int64(8), np.int64(3), np.int64(7), np.int64(0), np.int64(10), np.int64(1), np.int64(9), np.int64(5), np.int64(2), np.int64(4)]: 2 times (5.6%)
+    [np.int64(7), np.int64(1), np.int64(8), np.int64(0), np.int64(9), np.int64(4), np.int64(2), np.int64(10), np.int64(6), np.int64(3), np.int64(5)]: 1 times (2.8%)
+    [np.int64(1), np.int64(4), np.int64(7), np.int64(0), np.int64(10), np.int64(3), np.int64(6), np.int64(9), np.int64(2), np.int64(8), np.int64(5)]: 1 times (2.8%)
+    [np.int64(3), np.int64(8), np.int64(0), np.int64(5), np.int64(1), np.int64(6), np.int64(10), np.int64(7), np.int64(2), np.int64(4), np.int64(9)]: 1 times (2.8%)
+    [np.int64(3), np.int64(10), np.int64(6), np.int64(4), np.int64(9), np.int64(1), np.int64(8), np.int64(5), np.int64(2), np.int64(0), np.int64(7)]: 1 times (2.8%)
 
 Failed Runs Statistics:
   Final Fitness (Conflicts):
     Best: 2
-    Worst: 16
-    Mean: 2.93
+    Worst: 18
+    Mean: 2.96
     Median: 2

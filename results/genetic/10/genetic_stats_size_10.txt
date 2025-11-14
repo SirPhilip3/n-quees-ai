@@ -1,28 +1,28 @@
 
 Overall Performance:
   Total Runs: 100
-  Successful: 40 (40.0%)
-  Failed: 60 (60.0%)
+  Successful: 39 (39.0%)
+  Failed: 61 (61.0%)
 
 Successful Runs Statistics:
   Iterations to Solution:
     Min: 0
-    Max: 492
-    Mean: 135.40
-    Median: 64
-    Std: 137.65
+    Max: 405
+    Mean: 102.23
+    Median: 63
+    Std: 103.35
 
-  Unique Solutions Found: 40
+  Unique Solutions Found: 36
   Most Common Solutions:
-    [np.int64(5), np.int64(3), np.int64(1), np.int64(7), np.int64(2), np.int64(8), np.int64(6), np.int64(4), np.int64(9), np.int64(0)]: 1 times (2.5%)
-    [np.int64(3), np.int64(7), np.int64(4), np.int64(2), np.int64(0), np.int64(9), np.int64(6), np.int64(8), np.int64(5), np.int64(1)]: 1 times (2.5%)
-    [np.int64(2), np.int64(4), np.int64(1), np.int64(7), np.int64(9), np.int64(6), np.int64(3), np.int64(0), np.int64(8), np.int64(5)]: 1 times (2.5%)
-    [np.int64(7), np.int64(4), np.int64(6), np.int64(0), np.int64(9), np.int64(1), np.int64(5), np.int64(2), np.int64(8), np.int64(3)]: 1 times (2.5%)
-    [np.int64(3), np.int64(1), np.int64(9), np.int64(5), np.int64(8), np.int64(4), np.int64(7), np.int64(0), np.int64(2), np.int64(6)]: 1 times (2.5%)
+    [np.int64(3), np.int64(7), np.int64(4), np.int64(8), np.int64(0), np.int64(9), np.int64(1), np.int64(5), np.int64(2), np.int64(6)]: 2 times (5.1%)
+    [np.int64(6), np.int64(4), np.int64(0), np.int64(7), np.int64(9), np.int64(2), np.int64(5), np.int64(8), np.int64(1), np.int64(3)]: 2 times (5.1%)
+    [np.int64(8), np.int64(3), np.int64(5), np.int64(2), np.int64(9), np.int64(6), np.int64(0), np.int64(7), np.int64(4), np.int64(1)]: 2 times (5.1%)
+    [np.int64(0), np.int64(5), np.int64(3), np.int64(9), np.int64(6), np.int64(8), np.int64(2), np.int64(4), np.int64(1), np.int64(7)]: 1 times (2.6%)
+    [np.int64(3), np.int64(6), np.int64(0), np.int64(5), np.int64(1), np.int64(9), np.int64(7), np.int64(2), np.int64(4), np.int64(8)]: 1 times (2.6%)
 
 Failed Runs Statistics:
   Final Fitness (Conflicts):
     Best: 2
-    Worst: 18
-    Mean: 2.87
+    Worst: 16
+    Mean: 2.94
     Median: 2

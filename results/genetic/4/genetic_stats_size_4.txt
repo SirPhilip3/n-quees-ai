@@ -14,5 +14,5 @@ Successful Runs Statistics:
 
   Unique Solutions Found: 2
   Most Common Solutions:
-    [np.int64(1), np.int64(3), np.int64(0), np.int64(2)]: 51 times (51.0%)
-    [np.int64(2), np.int64(0), np.int64(3), np.int64(1)]: 49 times (49.0%)
+    [np.int64(1), np.int64(3), np.int64(0), np.int64(2)]: 55 times (55.0%)
+    [np.int64(2), np.int64(0), np.int64(3), np.int64(1)]: 45 times (45.0%)
