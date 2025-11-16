@@ -23,7 +23,7 @@ class AnnealingExperiment:
         elif schedule_type == 'logarithmic':
             self.logarithmic_schedule()
         else:
-            raise ValueError("Invalid schedule type. Choose 'linear', 'exponential', or 'logarithmic'.")
+            raise ValueError("Invalid schedule type.")
 
         # permetti di settare un seed per la riproducibilità
         self.seed = seed

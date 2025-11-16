@@ -5,22 +5,22 @@ Total runs: 100
 Overall iterations (all runs):
   min: 4
   max: 20
-  mean: 9.68
+  mean: 9.76
   median: 12.0
-  std: 5.801517042981086
+  std: 6.205030217492901
 
 Backtracking counts (all runs):
   min: 0
   max: 8
-  mean: 2.84
+  mean: 2.88
   median: 4.0
-  std: 2.900758521490543
+  std: 3.1025151087464504
 
 Unique solutions count: 2
 Frequencies and iteration stats per unique solution:
-  Solution: [2, 0, 3, 1], count: 52
-    iters -> min: 4, mean: 9.69, max: 20, median: 12.00, std: 5.73
-    backtracks -> min: 0, mean: 2.85, max: 8, median: 4.00, std: 2.86
-  Solution: [1, 3, 0, 2], count: 48
-    iters -> min: 4, mean: 9.67, max: 20, median: 12.00, std: 5.88
-    backtracks -> min: 0, mean: 2.83, max: 8, median: 4.00, std: 2.94
+  Solution: [1, 3, 0, 2], count: 42
+    iters -> min: 4, mean: 8.95, max: 20, median: 4.00, std: 6.04
+    backtracks -> min: 0, mean: 2.48, max: 8, median: 0.00, std: 3.02
+  Solution: [2, 0, 3, 1], count: 58
+    iters -> min: 4, mean: 10.34, max: 20, median: 12.00, std: 6.26
+    backtracks -> min: 0, mean: 3.17, max: 8, median: 4.00, std: 3.13

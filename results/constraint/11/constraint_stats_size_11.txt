@@ -4,302 +4,302 @@ Total runs: 100
 
 Overall iterations (all runs):
   min: 11
-  max: 1445
-  mean: 177.22
-  median: 99.0
-  std: 249.04889399473348
+  max: 1337
+  mean: 164.06
+  median: 79.0
+  std: 239.29437185190963
 
 Backtracking counts (all runs):
   min: 0
-  max: 717
-  mean: 83.11
-  median: 44.0
-  std: 124.52444699736674
+  max: 663
+  mean: 76.53
+  median: 34.0
+  std: 119.64718592595482
 
 Unique solutions count: 95
 Frequencies and iteration stats per unique solution:
-  Solution: [1, 8, 10, 5, 7, 2, 0, 3, 6, 4, 9], count: 1
-    iters -> min: 401, mean: 401.00, max: 401, median: 401.00, std: 0.00
-    backtracks -> min: 195, mean: 195.00, max: 195, median: 195.00, std: 0.00
-  Solution: [6, 1, 10, 5, 7, 9, 3, 0, 2, 4, 8], count: 1
-    iters -> min: 47, mean: 47.00, max: 47, median: 47.00, std: 0.00
-    backtracks -> min: 18, mean: 18.00, max: 18, median: 18.00, std: 0.00
-  Solution: [2, 7, 1, 6, 0, 9, 4, 8, 5, 3, 10], count: 1
-    iters -> min: 61, mean: 61.00, max: 61, median: 61.00, std: 0.00
-    backtracks -> min: 25, mean: 25.00, max: 25, median: 25.00, std: 0.00
-  Solution: [6, 8, 1, 5, 0, 2, 7, 10, 3, 9, 4], count: 1
-    iters -> min: 119, mean: 119.00, max: 119, median: 119.00, std: 0.00
-    backtracks -> min: 54, mean: 54.00, max: 54, median: 54.00, std: 0.00
-  Solution: [0, 10, 7, 4, 1, 8, 2, 9, 6, 3, 5], count: 1
-    iters -> min: 43, mean: 43.00, max: 43, median: 43.00, std: 0.00
-    backtracks -> min: 16, mean: 16.00, max: 16, median: 16.00, std: 0.00
-  Solution: [7, 10, 1, 9, 2, 5, 3, 8, 0, 4, 6], count: 1
-    iters -> min: 57, mean: 57.00, max: 57, median: 57.00, std: 0.00
-    backtracks -> min: 23, mean: 23.00, max: 23, median: 23.00, std: 0.00
-  Solution: [6, 8, 0, 4, 9, 5, 2, 10, 7, 3, 1], count: 1
-    iters -> min: 155, mean: 155.00, max: 155, median: 155.00, std: 0.00
-    backtracks -> min: 72, mean: 72.00, max: 72, median: 72.00, std: 0.00
-  Solution: [6, 9, 0, 8, 4, 2, 7, 10, 1, 3, 5], count: 1
-    iters -> min: 31, mean: 31.00, max: 31, median: 31.00, std: 0.00
-    backtracks -> min: 10, mean: 10.00, max: 10, median: 10.00, std: 0.00
-  Solution: [0, 8, 3, 5, 10, 2, 9, 6, 4, 7, 1], count: 2
-    iters -> min: 383, mean: 529.00, max: 675, median: 529.00, std: 146.00
-    backtracks -> min: 186, mean: 259.00, max: 332, median: 259.00, std: 73.00
-  Solution: [9, 2, 8, 10, 4, 1, 5, 0, 6, 3, 7], count: 1
+  Solution: [5, 10, 1, 4, 8, 3, 9, 7, 2, 0, 6], count: 1
+    iters -> min: 11, mean: 11.00, max: 11, median: 11.00, std: 0.00
+    backtracks -> min: 0, mean: 0.00, max: 0, median: 0.00, std: 0.00
+  Solution: [6, 1, 7, 10, 0, 2, 9, 5, 3, 8, 4], count: 1
+    iters -> min: 11, mean: 11.00, max: 11, median: 11.00, std: 0.00
+    backtracks -> min: 0, mean: 0.00, max: 0, median: 0.00, std: 0.00
+  Solution: [4, 9, 1, 8, 5, 3, 0, 7, 10, 6, 2], count: 1
+    iters -> min: 121, mean: 121.00, max: 121, median: 121.00, std: 0.00
+    backtracks -> min: 55, mean: 55.00, max: 55, median: 55.00, std: 0.00
+  Solution: [0, 9, 1, 4, 7, 10, 8, 2, 5, 3, 6], count: 1
+    iters -> min: 781, mean: 781.00, max: 781, median: 781.00, std: 0.00
+    backtracks -> min: 385, mean: 385.00, max: 385, median: 385.00, std: 0.00
+  Solution: [10, 0, 5, 8, 2, 7, 3, 1, 9, 4, 6], count: 1
+    iters -> min: 861, mean: 861.00, max: 861, median: 861.00, std: 0.00
+    backtracks -> min: 425, mean: 425.00, max: 425, median: 425.00, std: 0.00
+  Solution: [8, 0, 4, 7, 1, 10, 6, 2, 9, 5, 3], count: 2
+    iters -> min: 11, mean: 53.00, max: 95, median: 53.00, std: 42.00
+    backtracks -> min: 0, mean: 21.00, max: 42, median: 21.00, std: 21.00
+  Solution: [4, 2, 9, 3, 10, 8, 1, 5, 7, 0, 6], count: 1
+    iters -> min: 65, mean: 65.00, max: 65, median: 65.00, std: 0.00
+    backtracks -> min: 27, mean: 27.00, max: 27, median: 27.00, std: 0.00
+  Solution: [8, 10, 2, 4, 9, 0, 3, 5, 7, 1, 6], count: 1
+    iters -> min: 329, mean: 329.00, max: 329, median: 329.00, std: 0.00
+    backtracks -> min: 159, mean: 159.00, max: 159, median: 159.00, std: 0.00
+  Solution: [6, 2, 9, 7, 0, 4, 1, 10, 5, 3, 8], count: 1
     iters -> min: 35, mean: 35.00, max: 35, median: 35.00, std: 0.00
     backtracks -> min: 12, mean: 12.00, max: 12, median: 12.00, std: 0.00
-  Solution: [3, 8, 6, 1, 9, 5, 0, 4, 7, 10, 2], count: 2
-    iters -> min: 185, mean: 206.00, max: 227, median: 206.00, std: 21.00
-    backtracks -> min: 87, mean: 97.50, max: 108, median: 97.50, std: 10.50
-  Solution: [10, 2, 9, 6, 3, 1, 8, 5, 0, 4, 7], count: 1
-    iters -> min: 147, mean: 147.00, max: 147, median: 147.00, std: 0.00
-    backtracks -> min: 68, mean: 68.00, max: 68, median: 68.00, std: 0.00
-  Solution: [9, 2, 5, 8, 1, 7, 0, 3, 6, 4, 10], count: 1
-    iters -> min: 33, mean: 33.00, max: 33, median: 33.00, std: 0.00
-    backtracks -> min: 11, mean: 11.00, max: 11, median: 11.00, std: 0.00
-  Solution: [9, 1, 8, 4, 7, 3, 0, 6, 10, 5, 2], count: 1
-    iters -> min: 113, mean: 113.00, max: 113, median: 113.00, std: 0.00
-    backtracks -> min: 51, mean: 51.00, max: 51, median: 51.00, std: 0.00
-  Solution: [1, 8, 0, 7, 3, 10, 6, 9, 5, 2, 4], count: 2
-    iters -> min: 483, mean: 494.00, max: 505, median: 494.00, std: 11.00
-    backtracks -> min: 236, mean: 241.50, max: 247, median: 241.50, std: 5.50
-  Solution: [0, 3, 5, 9, 2, 10, 7, 4, 1, 8, 6], count: 1
-    iters -> min: 73, mean: 73.00, max: 73, median: 73.00, std: 0.00
-    backtracks -> min: 31, mean: 31.00, max: 31, median: 31.00, std: 0.00
-  Solution: [6, 4, 10, 5, 0, 9, 1, 8, 2, 7, 3], count: 1
-    iters -> min: 39, mean: 39.00, max: 39, median: 39.00, std: 0.00
-    backtracks -> min: 14, mean: 14.00, max: 14, median: 14.00, std: 0.00
-  Solution: [2, 8, 5, 7, 10, 3, 0, 6, 4, 9, 1], count: 1
-    iters -> min: 89, mean: 89.00, max: 89, median: 89.00, std: 0.00
-    backtracks -> min: 39, mean: 39.00, max: 39, median: 39.00, std: 0.00
-  Solution: [7, 9, 4, 6, 10, 0, 2, 8, 5, 3, 1], count: 1
-    iters -> min: 23, mean: 23.00, max: 23, median: 23.00, std: 0.00
-    backtracks -> min: 6, mean: 6.00, max: 6, median: 6.00, std: 0.00
-  Solution: [4, 8, 0, 3, 10, 7, 9, 1, 5, 2, 6], count: 1
-    iters -> min: 37, mean: 37.00, max: 37, median: 37.00, std: 0.00
-    backtracks -> min: 13, mean: 13.00, max: 13, median: 13.00, std: 0.00
-  Solution: [3, 6, 4, 7, 10, 0, 5, 8, 1, 9, 2], count: 1
+  Solution: [2, 9, 6, 1, 10, 4, 7, 0, 8, 3, 5], count: 1
     iters -> min: 19, mean: 19.00, max: 19, median: 19.00, std: 0.00
     backtracks -> min: 4, mean: 4.00, max: 4, median: 4.00, std: 0.00
-  Solution: [2, 7, 5, 8, 0, 9, 4, 6, 1, 3, 10], count: 1
-    iters -> min: 21, mean: 21.00, max: 21, median: 21.00, std: 0.00
-    backtracks -> min: 5, mean: 5.00, max: 5, median: 5.00, std: 0.00
-  Solution: [8, 10, 5, 9, 2, 0, 7, 3, 1, 6, 4], count: 1
-    iters -> min: 995, mean: 995.00, max: 995, median: 995.00, std: 0.00
-    backtracks -> min: 492, mean: 492.00, max: 492, median: 492.00, std: 0.00
-  Solution: [4, 9, 7, 3, 10, 8, 1, 5, 0, 2, 6], count: 1
-    iters -> min: 39, mean: 39.00, max: 39, median: 39.00, std: 0.00
-    backtracks -> min: 14, mean: 14.00, max: 14, median: 14.00, std: 0.00
-  Solution: [3, 1, 6, 4, 0, 10, 8, 2, 5, 7, 9], count: 1
-    iters -> min: 47, mean: 47.00, max: 47, median: 47.00, std: 0.00
-    backtracks -> min: 18, mean: 18.00, max: 18, median: 18.00, std: 0.00
-  Solution: [6, 3, 10, 7, 1, 8, 5, 2, 0, 9, 4], count: 1
-    iters -> min: 165, mean: 165.00, max: 165, median: 165.00, std: 0.00
-    backtracks -> min: 77, mean: 77.00, max: 77, median: 77.00, std: 0.00
-  Solution: [8, 10, 1, 6, 0, 2, 4, 7, 9, 3, 5], count: 1
-    iters -> min: 189, mean: 189.00, max: 189, median: 189.00, std: 0.00
-    backtracks -> min: 89, mean: 89.00, max: 89, median: 89.00, std: 0.00
-  Solution: [4, 7, 10, 0, 5, 8, 1, 3, 6, 2, 9], count: 1
+  Solution: [0, 5, 10, 4, 9, 3, 8, 2, 7, 1, 6], count: 2
+    iters -> min: 237, mean: 305.00, max: 373, median: 305.00, std: 68.00
+    backtracks -> min: 113, mean: 147.00, max: 181, median: 147.00, std: 34.00
+  Solution: [2, 7, 3, 10, 0, 9, 6, 4, 1, 8, 5], count: 1
+    iters -> min: 203, mean: 203.00, max: 203, median: 203.00, std: 0.00
+    backtracks -> min: 96, mean: 96.00, max: 96, median: 96.00, std: 0.00
+  Solution: [1, 9, 2, 6, 8, 3, 5, 0, 10, 4, 7], count: 1
+    iters -> min: 289, mean: 289.00, max: 289, median: 289.00, std: 0.00
+    backtracks -> min: 139, mean: 139.00, max: 139, median: 139.00, std: 0.00
+  Solution: [9, 0, 5, 3, 6, 10, 7, 1, 4, 2, 8], count: 2
     iters -> min: 13, mean: 13.00, max: 13, median: 13.00, std: 0.00
     backtracks -> min: 1, mean: 1.00, max: 1, median: 1.00, std: 0.00
-  Solution: [8, 3, 1, 6, 10, 5, 0, 4, 9, 7, 2], count: 1
-    iters -> min: 231, mean: 231.00, max: 231, median: 231.00, std: 0.00
-    backtracks -> min: 110, mean: 110.00, max: 110, median: 110.00, std: 0.00
-  Solution: [6, 9, 2, 0, 7, 4, 1, 8, 10, 5, 3], count: 1
-    iters -> min: 37, mean: 37.00, max: 37, median: 37.00, std: 0.00
-    backtracks -> min: 13, mean: 13.00, max: 13, median: 13.00, std: 0.00
-  Solution: [0, 4, 8, 1, 5, 9, 2, 6, 10, 3, 7], count: 1
-    iters -> min: 37, mean: 37.00, max: 37, median: 37.00, std: 0.00
-    backtracks -> min: 13, mean: 13.00, max: 13, median: 13.00, std: 0.00
-  Solution: [10, 3, 6, 4, 2, 0, 9, 7, 5, 8, 1], count: 1
-    iters -> min: 43, mean: 43.00, max: 43, median: 43.00, std: 0.00
-    backtracks -> min: 16, mean: 16.00, max: 16, median: 16.00, std: 0.00
-  Solution: [6, 0, 5, 10, 1, 7, 2, 8, 3, 9, 4], count: 1
-    iters -> min: 63, mean: 63.00, max: 63, median: 63.00, std: 0.00
-    backtracks -> min: 26, mean: 26.00, max: 26, median: 26.00, std: 0.00
-  Solution: [7, 5, 0, 2, 9, 6, 3, 10, 8, 1, 4], count: 1
-    iters -> min: 223, mean: 223.00, max: 223, median: 223.00, std: 0.00
-    backtracks -> min: 106, mean: 106.00, max: 106, median: 106.00, std: 0.00
-  Solution: [1, 4, 9, 7, 10, 3, 0, 2, 5, 8, 6], count: 1
-    iters -> min: 15, mean: 15.00, max: 15, median: 15.00, std: 0.00
-    backtracks -> min: 2, mean: 2.00, max: 2, median: 2.00, std: 0.00
-  Solution: [5, 7, 9, 0, 3, 8, 6, 2, 10, 1, 4], count: 1
-    iters -> min: 141, mean: 141.00, max: 141, median: 141.00, std: 0.00
-    backtracks -> min: 65, mean: 65.00, max: 65, median: 65.00, std: 0.00
-  Solution: [1, 10, 4, 6, 9, 5, 2, 0, 7, 3, 8], count: 1
-    iters -> min: 399, mean: 399.00, max: 399, median: 399.00, std: 0.00
-    backtracks -> min: 194, mean: 194.00, max: 194, median: 194.00, std: 0.00
-  Solution: [7, 3, 1, 8, 4, 0, 9, 5, 2, 10, 6], count: 2
-    iters -> min: 11, mean: 81.00, max: 151, median: 81.00, std: 70.00
-    backtracks -> min: 0, mean: 35.00, max: 70, median: 35.00, std: 35.00
-  Solution: [10, 1, 9, 6, 3, 0, 2, 8, 5, 7, 4], count: 2
-    iters -> min: 1341, mean: 1393.00, max: 1445, median: 1393.00, std: 52.00
-    backtracks -> min: 665, mean: 691.00, max: 717, median: 691.00, std: 26.00
-  Solution: [9, 6, 1, 5, 0, 8, 4, 7, 3, 10, 2], count: 1
-    iters -> min: 23, mean: 23.00, max: 23, median: 23.00, std: 0.00
-    backtracks -> min: 6, mean: 6.00, max: 6, median: 6.00, std: 0.00
-  Solution: [5, 3, 9, 4, 10, 8, 0, 2, 7, 1, 6], count: 1
-    iters -> min: 17, mean: 17.00, max: 17, median: 17.00, std: 0.00
-    backtracks -> min: 3, mean: 3.00, max: 3, median: 3.00, std: 0.00
-  Solution: [10, 7, 2, 4, 8, 1, 5, 9, 6, 0, 3], count: 1
-    iters -> min: 27, mean: 27.00, max: 27, median: 27.00, std: 0.00
-    backtracks -> min: 8, mean: 8.00, max: 8, median: 8.00, std: 0.00
-  Solution: [0, 10, 3, 6, 9, 2, 8, 1, 4, 7, 5], count: 1
-    iters -> min: 493, mean: 493.00, max: 493, median: 493.00, std: 0.00
-    backtracks -> min: 241, mean: 241.00, max: 241, median: 241.00, std: 0.00
-  Solution: [0, 9, 7, 5, 3, 1, 10, 8, 6, 4, 2], count: 1
-    iters -> min: 507, mean: 507.00, max: 507, median: 507.00, std: 0.00
-    backtracks -> min: 248, mean: 248.00, max: 248, median: 248.00, std: 0.00
-  Solution: [9, 2, 10, 3, 7, 0, 4, 1, 5, 8, 6], count: 1
-    iters -> min: 405, mean: 405.00, max: 405, median: 405.00, std: 0.00
-    backtracks -> min: 197, mean: 197.00, max: 197, median: 197.00, std: 0.00
-  Solution: [4, 8, 3, 0, 7, 10, 1, 5, 2, 9, 6], count: 1
-    iters -> min: 149, mean: 149.00, max: 149, median: 149.00, std: 0.00
-    backtracks -> min: 69, mean: 69.00, max: 69, median: 69.00, std: 0.00
-  Solution: [7, 5, 8, 2, 0, 3, 6, 9, 1, 10, 4], count: 1
-    iters -> min: 67, mean: 67.00, max: 67, median: 67.00, std: 0.00
-    backtracks -> min: 28, mean: 28.00, max: 28, median: 28.00, std: 0.00
-  Solution: [8, 0, 9, 6, 2, 7, 1, 3, 5, 10, 4], count: 1
-    iters -> min: 297, mean: 297.00, max: 297, median: 297.00, std: 0.00
-    backtracks -> min: 143, mean: 143.00, max: 143, median: 143.00, std: 0.00
-  Solution: [8, 4, 9, 1, 3, 7, 0, 2, 5, 10, 6], count: 1
-    iters -> min: 679, mean: 679.00, max: 679, median: 679.00, std: 0.00
-    backtracks -> min: 334, mean: 334.00, max: 334, median: 334.00, std: 0.00
-  Solution: [9, 5, 8, 0, 3, 7, 2, 10, 6, 4, 1], count: 1
-    iters -> min: 183, mean: 183.00, max: 183, median: 183.00, std: 0.00
-    backtracks -> min: 86, mean: 86.00, max: 86, median: 86.00, std: 0.00
-  Solution: [1, 6, 0, 5, 10, 4, 9, 3, 8, 2, 7], count: 1
-    iters -> min: 23, mean: 23.00, max: 23, median: 23.00, std: 0.00
-    backtracks -> min: 6, mean: 6.00, max: 6, median: 6.00, std: 0.00
-  Solution: [9, 3, 6, 10, 2, 0, 5, 8, 4, 1, 7], count: 1
-    iters -> min: 17, mean: 17.00, max: 17, median: 17.00, std: 0.00
-    backtracks -> min: 3, mean: 3.00, max: 3, median: 3.00, std: 0.00
-  Solution: [1, 3, 9, 7, 2, 10, 6, 0, 5, 8, 4], count: 1
-    iters -> min: 127, mean: 127.00, max: 127, median: 127.00, std: 0.00
-    backtracks -> min: 58, mean: 58.00, max: 58, median: 58.00, std: 0.00
-  Solution: [9, 7, 1, 4, 0, 5, 8, 10, 3, 6, 2], count: 1
-    iters -> min: 93, mean: 93.00, max: 93, median: 93.00, std: 0.00
-    backtracks -> min: 41, mean: 41.00, max: 41, median: 41.00, std: 0.00
-  Solution: [9, 6, 3, 10, 8, 1, 4, 7, 0, 2, 5], count: 1
-    iters -> min: 115, mean: 115.00, max: 115, median: 115.00, std: 0.00
-    backtracks -> min: 52, mean: 52.00, max: 52, median: 52.00, std: 0.00
-  Solution: [5, 1, 9, 4, 0, 8, 10, 2, 6, 3, 7], count: 1
-    iters -> min: 15, mean: 15.00, max: 15, median: 15.00, std: 0.00
-    backtracks -> min: 2, mean: 2.00, max: 2, median: 2.00, std: 0.00
-  Solution: [1, 5, 2, 10, 7, 3, 8, 0, 4, 6, 9], count: 1
-    iters -> min: 699, mean: 699.00, max: 699, median: 699.00, std: 0.00
-    backtracks -> min: 344, mean: 344.00, max: 344, median: 344.00, std: 0.00
-  Solution: [4, 6, 0, 5, 10, 1, 7, 2, 8, 3, 9], count: 1
-    iters -> min: 23, mean: 23.00, max: 23, median: 23.00, std: 0.00
-    backtracks -> min: 6, mean: 6.00, max: 6, median: 6.00, std: 0.00
-  Solution: [3, 7, 2, 8, 1, 9, 4, 6, 10, 0, 5], count: 1
-    iters -> min: 15, mean: 15.00, max: 15, median: 15.00, std: 0.00
-    backtracks -> min: 2, mean: 2.00, max: 2, median: 2.00, std: 0.00
-  Solution: [2, 7, 1, 3, 0, 8, 10, 5, 9, 6, 4], count: 1
-    iters -> min: 63, mean: 63.00, max: 63, median: 63.00, std: 0.00
-    backtracks -> min: 26, mean: 26.00, max: 26, median: 26.00, std: 0.00
-  Solution: [1, 4, 10, 8, 0, 9, 3, 6, 2, 7, 5], count: 1
-    iters -> min: 177, mean: 177.00, max: 177, median: 177.00, std: 0.00
-    backtracks -> min: 83, mean: 83.00, max: 83, median: 83.00, std: 0.00
-  Solution: [5, 1, 8, 4, 0, 3, 9, 6, 10, 2, 7], count: 1
-    iters -> min: 73, mean: 73.00, max: 73, median: 73.00, std: 0.00
-    backtracks -> min: 31, mean: 31.00, max: 31, median: 31.00, std: 0.00
-  Solution: [3, 7, 0, 4, 8, 1, 5, 9, 2, 6, 10], count: 1
-    iters -> min: 25, mean: 25.00, max: 25, median: 25.00, std: 0.00
-    backtracks -> min: 7, mean: 7.00, max: 7, median: 7.00, std: 0.00
-  Solution: [8, 4, 2, 0, 3, 9, 7, 5, 10, 1, 6], count: 1
-    iters -> min: 47, mean: 47.00, max: 47, median: 47.00, std: 0.00
-    backtracks -> min: 18, mean: 18.00, max: 18, median: 18.00, std: 0.00
-  Solution: [2, 5, 7, 10, 4, 0, 9, 3, 6, 8, 1], count: 1
-    iters -> min: 59, mean: 59.00, max: 59, median: 59.00, std: 0.00
-    backtracks -> min: 24, mean: 24.00, max: 24, median: 24.00, std: 0.00
-  Solution: [10, 5, 1, 9, 0, 3, 7, 2, 8, 6, 4], count: 1
-    iters -> min: 275, mean: 275.00, max: 275, median: 275.00, std: 0.00
-    backtracks -> min: 132, mean: 132.00, max: 132, median: 132.00, std: 0.00
-  Solution: [0, 6, 9, 2, 10, 8, 3, 1, 4, 7, 5], count: 1
-    iters -> min: 125, mean: 125.00, max: 125, median: 125.00, std: 0.00
-    backtracks -> min: 57, mean: 57.00, max: 57, median: 57.00, std: 0.00
-  Solution: [0, 3, 5, 8, 1, 9, 4, 2, 7, 10, 6], count: 1
-    iters -> min: 47, mean: 47.00, max: 47, median: 47.00, std: 0.00
-    backtracks -> min: 18, mean: 18.00, max: 18, median: 18.00, std: 0.00
-  Solution: [9, 2, 4, 7, 10, 0, 5, 1, 8, 6, 3], count: 1
-    iters -> min: 125, mean: 125.00, max: 125, median: 125.00, std: 0.00
-    backtracks -> min: 57, mean: 57.00, max: 57, median: 57.00, std: 0.00
-  Solution: [4, 9, 0, 2, 5, 7, 1, 10, 8, 6, 3], count: 1
-    iters -> min: 113, mean: 113.00, max: 113, median: 113.00, std: 0.00
-    backtracks -> min: 51, mean: 51.00, max: 51, median: 51.00, std: 0.00
-  Solution: [0, 3, 9, 6, 10, 2, 7, 1, 4, 8, 5], count: 1
-    iters -> min: 321, mean: 321.00, max: 321, median: 321.00, std: 0.00
-    backtracks -> min: 155, mean: 155.00, max: 155, median: 155.00, std: 0.00
-  Solution: [2, 10, 7, 3, 0, 8, 1, 5, 9, 6, 4], count: 1
-    iters -> min: 209, mean: 209.00, max: 209, median: 209.00, std: 0.00
-    backtracks -> min: 99, mean: 99.00, max: 99, median: 99.00, std: 0.00
-  Solution: [0, 6, 4, 7, 10, 8, 3, 1, 9, 2, 5], count: 1
-    iters -> min: 33, mean: 33.00, max: 33, median: 33.00, std: 0.00
-    backtracks -> min: 11, mean: 11.00, max: 11, median: 11.00, std: 0.00
-  Solution: [2, 5, 8, 4, 0, 10, 6, 1, 3, 7, 9], count: 1
-    iters -> min: 99, mean: 99.00, max: 99, median: 99.00, std: 0.00
-    backtracks -> min: 44, mean: 44.00, max: 44, median: 44.00, std: 0.00
-  Solution: [2, 0, 5, 1, 8, 10, 3, 7, 9, 4, 6], count: 1
-    iters -> min: 135, mean: 135.00, max: 135, median: 135.00, std: 0.00
-    backtracks -> min: 62, mean: 62.00, max: 62, median: 62.00, std: 0.00
-  Solution: [9, 1, 3, 7, 2, 8, 5, 0, 10, 6, 4], count: 1
-    iters -> min: 515, mean: 515.00, max: 515, median: 515.00, std: 0.00
-    backtracks -> min: 252, mean: 252.00, max: 252, median: 252.00, std: 0.00
-  Solution: [10, 0, 3, 5, 8, 2, 9, 7, 1, 4, 6], count: 1
-    iters -> min: 159, mean: 159.00, max: 159, median: 159.00, std: 0.00
-    backtracks -> min: 74, mean: 74.00, max: 74, median: 74.00, std: 0.00
-  Solution: [7, 5, 2, 0, 6, 4, 9, 1, 3, 10, 8], count: 1
-    iters -> min: 123, mean: 123.00, max: 123, median: 123.00, std: 0.00
-    backtracks -> min: 56, mean: 56.00, max: 56, median: 56.00, std: 0.00
-  Solution: [1, 4, 6, 10, 0, 5, 3, 9, 7, 2, 8], count: 1
-    iters -> min: 53, mean: 53.00, max: 53, median: 53.00, std: 0.00
-    backtracks -> min: 21, mean: 21.00, max: 21, median: 21.00, std: 0.00
-  Solution: [1, 10, 2, 6, 8, 0, 4, 9, 7, 5, 3], count: 1
-    iters -> min: 169, mean: 169.00, max: 169, median: 169.00, std: 0.00
-    backtracks -> min: 79, mean: 79.00, max: 79, median: 79.00, std: 0.00
-  Solution: [1, 5, 10, 2, 6, 3, 9, 0, 8, 4, 7], count: 1
-    iters -> min: 143, mean: 143.00, max: 143, median: 143.00, std: 0.00
-    backtracks -> min: 66, mean: 66.00, max: 66, median: 66.00, std: 0.00
-  Solution: [3, 5, 9, 4, 0, 10, 8, 6, 1, 7, 2], count: 1
-    iters -> min: 17, mean: 17.00, max: 17, median: 17.00, std: 0.00
-    backtracks -> min: 3, mean: 3.00, max: 3, median: 3.00, std: 0.00
-  Solution: [3, 7, 2, 8, 5, 1, 10, 0, 6, 4, 9], count: 1
-    iters -> min: 45, mean: 45.00, max: 45, median: 45.00, std: 0.00
-    backtracks -> min: 17, mean: 17.00, max: 17, median: 17.00, std: 0.00
-  Solution: [8, 1, 3, 9, 7, 2, 4, 6, 10, 0, 5], count: 1
-    iters -> min: 165, mean: 165.00, max: 165, median: 165.00, std: 0.00
-    backtracks -> min: 77, mean: 77.00, max: 77, median: 77.00, std: 0.00
-  Solution: [7, 1, 4, 0, 10, 6, 9, 5, 2, 8, 3], count: 1
-    iters -> min: 17, mean: 17.00, max: 17, median: 17.00, std: 0.00
-    backtracks -> min: 3, mean: 3.00, max: 3, median: 3.00, std: 0.00
-  Solution: [1, 8, 5, 3, 0, 9, 4, 6, 10, 2, 7], count: 1
-    iters -> min: 139, mean: 139.00, max: 139, median: 139.00, std: 0.00
-    backtracks -> min: 64, mean: 64.00, max: 64, median: 64.00, std: 0.00
-  Solution: [1, 5, 7, 10, 3, 0, 8, 4, 2, 9, 6], count: 1
-    iters -> min: 11, mean: 11.00, max: 11, median: 11.00, std: 0.00
-    backtracks -> min: 0, mean: 0.00, max: 0, median: 0.00, std: 0.00
-  Solution: [3, 10, 6, 9, 2, 4, 7, 0, 8, 1, 5], count: 1
-    iters -> min: 55, mean: 55.00, max: 55, median: 55.00, std: 0.00
-    backtracks -> min: 22, mean: 22.00, max: 22, median: 22.00, std: 0.00
-  Solution: [8, 1, 7, 9, 3, 0, 4, 10, 5, 2, 6], count: 1
+  Solution: [6, 1, 7, 4, 0, 3, 8, 10, 5, 2, 9], count: 1
+    iters -> min: 69, mean: 69.00, max: 69, median: 69.00, std: 0.00
+    backtracks -> min: 29, mean: 29.00, max: 29, median: 29.00, std: 0.00
+  Solution: [6, 3, 9, 0, 8, 5, 2, 10, 1, 7, 4], count: 1
     iters -> min: 155, mean: 155.00, max: 155, median: 155.00, std: 0.00
     backtracks -> min: 72, mean: 72.00, max: 72, median: 72.00, std: 0.00
-  Solution: [8, 5, 7, 1, 3, 0, 9, 4, 2, 10, 6], count: 1
-    iters -> min: 25, mean: 25.00, max: 25, median: 25.00, std: 0.00
-    backtracks -> min: 7, mean: 7.00, max: 7, median: 7.00, std: 0.00
-  Solution: [8, 5, 3, 0, 7, 10, 4, 6, 1, 9, 2], count: 1
-    iters -> min: 99, mean: 99.00, max: 99, median: 99.00, std: 0.00
-    backtracks -> min: 44, mean: 44.00, max: 44, median: 44.00, std: 0.00
-  Solution: [0, 2, 7, 5, 8, 1, 4, 10, 3, 6, 9], count: 1
-    iters -> min: 25, mean: 25.00, max: 25, median: 25.00, std: 0.00
-    backtracks -> min: 7, mean: 7.00, max: 7, median: 7.00, std: 0.00
-  Solution: [6, 4, 10, 7, 0, 3, 1, 8, 5, 2, 9], count: 1
-    iters -> min: 113, mean: 113.00, max: 113, median: 113.00, std: 0.00
-    backtracks -> min: 51, mean: 51.00, max: 51, median: 51.00, std: 0.00
-  Solution: [8, 1, 4, 10, 3, 6, 9, 5, 2, 0, 7], count: 1
+  Solution: [9, 5, 8, 2, 4, 10, 7, 0, 6, 3, 1], count: 1
+    iters -> min: 115, mean: 115.00, max: 115, median: 115.00, std: 0.00
+    backtracks -> min: 52, mean: 52.00, max: 52, median: 52.00, std: 0.00
+  Solution: [10, 1, 9, 6, 3, 0, 2, 8, 5, 7, 4], count: 1
+    iters -> min: 1337, mean: 1337.00, max: 1337, median: 1337.00, std: 0.00
+    backtracks -> min: 663, mean: 663.00, max: 663, median: 663.00, std: 0.00
+  Solution: [1, 7, 2, 6, 8, 10, 4, 0, 3, 5, 9], count: 1
+    iters -> min: 45, mean: 45.00, max: 45, median: 45.00, std: 0.00
+    backtracks -> min: 17, mean: 17.00, max: 17, median: 17.00, std: 0.00
+  Solution: [4, 8, 5, 9, 2, 0, 7, 3, 10, 6, 1], count: 1
+    iters -> min: 55, mean: 55.00, max: 55, median: 55.00, std: 0.00
+    backtracks -> min: 22, mean: 22.00, max: 22, median: 22.00, std: 0.00
+  Solution: [4, 0, 8, 5, 1, 10, 6, 2, 9, 7, 3], count: 1
+    iters -> min: 39, mean: 39.00, max: 39, median: 39.00, std: 0.00
+    backtracks -> min: 14, mean: 14.00, max: 14, median: 14.00, std: 0.00
+  Solution: [2, 7, 3, 6, 9, 5, 10, 0, 4, 8, 1], count: 1
     iters -> min: 11, mean: 11.00, max: 11, median: 11.00, std: 0.00
     backtracks -> min: 0, mean: 0.00, max: 0, median: 0.00, std: 0.00
-  Solution: [6, 3, 7, 10, 4, 0, 9, 5, 2, 8, 1], count: 1
-    iters -> min: 197, mean: 197.00, max: 197, median: 197.00, std: 0.00
-    backtracks -> min: 93, mean: 93.00, max: 93, median: 93.00, std: 0.00
+  Solution: [8, 0, 3, 7, 10, 2, 9, 5, 1, 4, 6], count: 1
+    iters -> min: 19, mean: 19.00, max: 19, median: 19.00, std: 0.00
+    backtracks -> min: 4, mean: 4.00, max: 4, median: 4.00, std: 0.00
+  Solution: [3, 8, 4, 2, 10, 6, 1, 5, 0, 9, 7], count: 1
+    iters -> min: 63, mean: 63.00, max: 63, median: 63.00, std: 0.00
+    backtracks -> min: 26, mean: 26.00, max: 26, median: 26.00, std: 0.00
+  Solution: [6, 10, 1, 7, 5, 3, 9, 0, 8, 4, 2], count: 1
+    iters -> min: 81, mean: 81.00, max: 81, median: 81.00, std: 0.00
+    backtracks -> min: 35, mean: 35.00, max: 35, median: 35.00, std: 0.00
+  Solution: [7, 3, 10, 0, 5, 1, 9, 6, 8, 2, 4], count: 1
+    iters -> min: 21, mean: 21.00, max: 21, median: 21.00, std: 0.00
+    backtracks -> min: 5, mean: 5.00, max: 5, median: 5.00, std: 0.00
+  Solution: [5, 10, 4, 6, 0, 9, 1, 8, 2, 7, 3], count: 1
+    iters -> min: 57, mean: 57.00, max: 57, median: 57.00, std: 0.00
+    backtracks -> min: 23, mean: 23.00, max: 23, median: 23.00, std: 0.00
+  Solution: [5, 1, 10, 7, 2, 6, 3, 9, 0, 8, 4], count: 1
+    iters -> min: 273, mean: 273.00, max: 273, median: 273.00, std: 0.00
+    backtracks -> min: 131, mean: 131.00, max: 131, median: 131.00, std: 0.00
+  Solution: [9, 2, 5, 10, 8, 3, 0, 4, 7, 1, 6], count: 1
+    iters -> min: 65, mean: 65.00, max: 65, median: 65.00, std: 0.00
+    backtracks -> min: 27, mean: 27.00, max: 27, median: 27.00, std: 0.00
+  Solution: [3, 7, 4, 8, 0, 9, 1, 5, 2, 6, 10], count: 1
+    iters -> min: 53, mean: 53.00, max: 53, median: 53.00, std: 0.00
+    backtracks -> min: 21, mean: 21.00, max: 21, median: 21.00, std: 0.00
+  Solution: [8, 4, 1, 9, 5, 10, 0, 3, 6, 2, 7], count: 1
+    iters -> min: 163, mean: 163.00, max: 163, median: 163.00, std: 0.00
+    backtracks -> min: 76, mean: 76.00, max: 76, median: 76.00, std: 0.00
+  Solution: [3, 9, 2, 10, 1, 6, 8, 0, 4, 7, 5], count: 1
+    iters -> min: 35, mean: 35.00, max: 35, median: 35.00, std: 0.00
+    backtracks -> min: 12, mean: 12.00, max: 12, median: 12.00, std: 0.00
+  Solution: [2, 6, 3, 7, 10, 8, 0, 4, 1, 9, 5], count: 1
+    iters -> min: 399, mean: 399.00, max: 399, median: 399.00, std: 0.00
+    backtracks -> min: 194, mean: 194.00, max: 194, median: 194.00, std: 0.00
+  Solution: [8, 10, 5, 9, 2, 0, 7, 3, 1, 6, 4], count: 2
+    iters -> min: 107, mean: 503.00, max: 899, median: 503.00, std: 396.00
+    backtracks -> min: 48, mean: 246.00, max: 444, median: 246.00, std: 198.00
+  Solution: [1, 4, 8, 5, 3, 10, 0, 2, 6, 9, 7], count: 1
+    iters -> min: 415, mean: 415.00, max: 415, median: 415.00, std: 0.00
+    backtracks -> min: 202, mean: 202.00, max: 202, median: 202.00, std: 0.00
+  Solution: [10, 5, 0, 6, 1, 7, 2, 8, 3, 9, 4], count: 1
+    iters -> min: 449, mean: 449.00, max: 449, median: 449.00, std: 0.00
+    backtracks -> min: 219, mean: 219.00, max: 219, median: 219.00, std: 0.00
+  Solution: [5, 2, 10, 3, 7, 4, 1, 9, 0, 6, 8], count: 1
+    iters -> min: 17, mean: 17.00, max: 17, median: 17.00, std: 0.00
+    backtracks -> min: 3, mean: 3.00, max: 3, median: 3.00, std: 0.00
+  Solution: [9, 0, 8, 4, 2, 10, 6, 1, 3, 5, 7], count: 1
+    iters -> min: 173, mean: 173.00, max: 173, median: 173.00, std: 0.00
+    backtracks -> min: 81, mean: 81.00, max: 81, median: 81.00, std: 0.00
+  Solution: [2, 4, 10, 7, 9, 1, 3, 0, 6, 8, 5], count: 1
+    iters -> min: 225, mean: 225.00, max: 225, median: 225.00, std: 0.00
+    backtracks -> min: 107, mean: 107.00, max: 107, median: 107.00, std: 0.00
+  Solution: [4, 9, 0, 3, 7, 2, 8, 6, 1, 10, 5], count: 1
+    iters -> min: 385, mean: 385.00, max: 385, median: 385.00, std: 0.00
+    backtracks -> min: 187, mean: 187.00, max: 187, median: 187.00, std: 0.00
+  Solution: [3, 8, 6, 2, 10, 7, 0, 4, 9, 1, 5], count: 1
+    iters -> min: 517, mean: 517.00, max: 517, median: 517.00, std: 0.00
+    backtracks -> min: 253, mean: 253.00, max: 253, median: 253.00, std: 0.00
+  Solution: [3, 6, 4, 7, 10, 0, 2, 8, 5, 9, 1], count: 1
+    iters -> min: 31, mean: 31.00, max: 31, median: 31.00, std: 0.00
+    backtracks -> min: 10, mean: 10.00, max: 10, median: 10.00, std: 0.00
+  Solution: [10, 0, 3, 5, 8, 2, 9, 7, 1, 4, 6], count: 1
+    iters -> min: 45, mean: 45.00, max: 45, median: 45.00, std: 0.00
+    backtracks -> min: 17, mean: 17.00, max: 17, median: 17.00, std: 0.00
+  Solution: [1, 8, 5, 0, 2, 7, 10, 6, 3, 9, 4], count: 1
+    iters -> min: 57, mean: 57.00, max: 57, median: 57.00, std: 0.00
+    backtracks -> min: 23, mean: 23.00, max: 23, median: 23.00, std: 0.00
+  Solution: [0, 3, 8, 6, 9, 1, 10, 5, 7, 2, 4], count: 1
+    iters -> min: 1245, mean: 1245.00, max: 1245, median: 1245.00, std: 0.00
+    backtracks -> min: 617, mean: 617.00, max: 617, median: 617.00, std: 0.00
+  Solution: [1, 8, 0, 7, 3, 10, 6, 9, 5, 2, 4], count: 1
+    iters -> min: 185, mean: 185.00, max: 185, median: 185.00, std: 0.00
+    backtracks -> min: 87, mean: 87.00, max: 87, median: 87.00, std: 0.00
+  Solution: [1, 6, 8, 5, 2, 0, 10, 4, 7, 9, 3], count: 1
+    iters -> min: 41, mean: 41.00, max: 41, median: 41.00, std: 0.00
+    backtracks -> min: 15, mean: 15.00, max: 15, median: 15.00, std: 0.00
+  Solution: [10, 8, 6, 4, 2, 0, 9, 7, 5, 3, 1], count: 1
+    iters -> min: 67, mean: 67.00, max: 67, median: 67.00, std: 0.00
+    backtracks -> min: 28, mean: 28.00, max: 28, median: 28.00, std: 0.00
+  Solution: [0, 5, 1, 8, 6, 3, 9, 2, 4, 10, 7], count: 1
+    iters -> min: 91, mean: 91.00, max: 91, median: 91.00, std: 0.00
+    backtracks -> min: 40, mean: 40.00, max: 40, median: 40.00, std: 0.00
+  Solution: [9, 5, 1, 4, 10, 8, 6, 3, 0, 2, 7], count: 1
+    iters -> min: 129, mean: 129.00, max: 129, median: 129.00, std: 0.00
+    backtracks -> min: 59, mean: 59.00, max: 59, median: 59.00, std: 0.00
+  Solution: [0, 8, 3, 5, 10, 2, 9, 6, 4, 7, 1], count: 1
+    iters -> min: 471, mean: 471.00, max: 471, median: 471.00, std: 0.00
+    backtracks -> min: 230, mean: 230.00, max: 230, median: 230.00, std: 0.00
+  Solution: [7, 2, 0, 3, 6, 8, 10, 4, 1, 5, 9], count: 1
+    iters -> min: 79, mean: 79.00, max: 79, median: 79.00, std: 0.00
+    backtracks -> min: 34, mean: 34.00, max: 34, median: 34.00, std: 0.00
+  Solution: [2, 9, 3, 6, 0, 10, 5, 1, 8, 4, 7], count: 1
+    iters -> min: 49, mean: 49.00, max: 49, median: 49.00, std: 0.00
+    backtracks -> min: 19, mean: 19.00, max: 19, median: 19.00, std: 0.00
+  Solution: [2, 10, 3, 7, 4, 8, 0, 5, 1, 6, 9], count: 1
+    iters -> min: 93, mean: 93.00, max: 93, median: 93.00, std: 0.00
+    backtracks -> min: 41, mean: 41.00, max: 41, median: 41.00, std: 0.00
+  Solution: [5, 7, 1, 4, 0, 8, 3, 9, 6, 2, 10], count: 1
+    iters -> min: 33, mean: 33.00, max: 33, median: 33.00, std: 0.00
+    backtracks -> min: 11, mean: 11.00, max: 11, median: 11.00, std: 0.00
+  Solution: [10, 8, 4, 1, 9, 2, 5, 7, 0, 3, 6], count: 1
+    iters -> min: 13, mean: 13.00, max: 13, median: 13.00, std: 0.00
+    backtracks -> min: 1, mean: 1.00, max: 1, median: 1.00, std: 0.00
+  Solution: [7, 4, 0, 5, 8, 10, 3, 6, 2, 9, 1], count: 1
+    iters -> min: 17, mean: 17.00, max: 17, median: 17.00, std: 0.00
+    backtracks -> min: 3, mean: 3.00, max: 3, median: 3.00, std: 0.00
+  Solution: [2, 10, 6, 0, 5, 8, 1, 3, 7, 9, 4], count: 1
+    iters -> min: 91, mean: 91.00, max: 91, median: 91.00, std: 0.00
+    backtracks -> min: 40, mean: 40.00, max: 40, median: 40.00, std: 0.00
+  Solution: [5, 1, 4, 10, 8, 6, 3, 0, 2, 7, 9], count: 1
+    iters -> min: 95, mean: 95.00, max: 95, median: 95.00, std: 0.00
+    backtracks -> min: 42, mean: 42.00, max: 42, median: 42.00, std: 0.00
+  Solution: [0, 3, 6, 8, 10, 1, 9, 5, 2, 4, 7], count: 1
+    iters -> min: 115, mean: 115.00, max: 115, median: 115.00, std: 0.00
+    backtracks -> min: 52, mean: 52.00, max: 52, median: 52.00, std: 0.00
+  Solution: [8, 5, 9, 2, 6, 10, 1, 7, 4, 0, 3], count: 1
+    iters -> min: 11, mean: 11.00, max: 11, median: 11.00, std: 0.00
+    backtracks -> min: 0, mean: 0.00, max: 0, median: 0.00, std: 0.00
+  Solution: [3, 10, 0, 9, 5, 2, 8, 1, 7, 4, 6], count: 1
+    iters -> min: 127, mean: 127.00, max: 127, median: 127.00, std: 0.00
+    backtracks -> min: 58, mean: 58.00, max: 58, median: 58.00, std: 0.00
+  Solution: [3, 6, 0, 9, 1, 5, 7, 2, 10, 8, 4], count: 1
+    iters -> min: 123, mean: 123.00, max: 123, median: 123.00, std: 0.00
+    backtracks -> min: 56, mean: 56.00, max: 56, median: 56.00, std: 0.00
+  Solution: [2, 7, 5, 1, 8, 4, 0, 3, 9, 6, 10], count: 1
+    iters -> min: 247, mean: 247.00, max: 247, median: 247.00, std: 0.00
+    backtracks -> min: 118, mean: 118.00, max: 118, median: 118.00, std: 0.00
+  Solution: [9, 7, 10, 4, 1, 8, 0, 3, 6, 2, 5], count: 1
+    iters -> min: 191, mean: 191.00, max: 191, median: 191.00, std: 0.00
+    backtracks -> min: 90, mean: 90.00, max: 90, median: 90.00, std: 0.00
+  Solution: [0, 6, 3, 9, 7, 1, 10, 2, 5, 8, 4], count: 1
+    iters -> min: 27, mean: 27.00, max: 27, median: 27.00, std: 0.00
+    backtracks -> min: 8, mean: 8.00, max: 8, median: 8.00, std: 0.00
+  Solution: [7, 10, 8, 0, 2, 4, 6, 1, 9, 5, 3], count: 1
+    iters -> min: 15, mean: 15.00, max: 15, median: 15.00, std: 0.00
+    backtracks -> min: 2, mean: 2.00, max: 2, median: 2.00, std: 0.00
+  Solution: [7, 3, 10, 0, 4, 8, 5, 2, 9, 1, 6], count: 1
+    iters -> min: 79, mean: 79.00, max: 79, median: 79.00, std: 0.00
+    backtracks -> min: 34, mean: 34.00, max: 34, median: 34.00, std: 0.00
+  Solution: [1, 5, 2, 8, 10, 3, 9, 6, 4, 0, 7], count: 1
+    iters -> min: 47, mean: 47.00, max: 47, median: 47.00, std: 0.00
+    backtracks -> min: 18, mean: 18.00, max: 18, median: 18.00, std: 0.00
+  Solution: [5, 3, 10, 0, 7, 4, 1, 8, 2, 9, 6], count: 1
+    iters -> min: 87, mean: 87.00, max: 87, median: 87.00, std: 0.00
+    backtracks -> min: 38, mean: 38.00, max: 38, median: 38.00, std: 0.00
+  Solution: [6, 9, 1, 5, 8, 2, 7, 10, 3, 0, 4], count: 1
+    iters -> min: 43, mean: 43.00, max: 43, median: 43.00, std: 0.00
+    backtracks -> min: 16, mean: 16.00, max: 16, median: 16.00, std: 0.00
+  Solution: [10, 6, 3, 1, 4, 8, 0, 9, 7, 5, 2], count: 1
+    iters -> min: 93, mean: 93.00, max: 93, median: 93.00, std: 0.00
+    backtracks -> min: 41, mean: 41.00, max: 41, median: 41.00, std: 0.00
+  Solution: [6, 1, 10, 7, 0, 3, 9, 2, 5, 8, 4], count: 1
+    iters -> min: 65, mean: 65.00, max: 65, median: 65.00, std: 0.00
+    backtracks -> min: 27, mean: 27.00, max: 27, median: 27.00, std: 0.00
+  Solution: [10, 4, 9, 3, 0, 2, 7, 1, 6, 8, 5], count: 1
+    iters -> min: 63, mean: 63.00, max: 63, median: 63.00, std: 0.00
+    backtracks -> min: 26, mean: 26.00, max: 26, median: 26.00, std: 0.00
+  Solution: [1, 3, 5, 7, 9, 0, 2, 4, 6, 8, 10], count: 1
+    iters -> min: 67, mean: 67.00, max: 67, median: 67.00, std: 0.00
+    backtracks -> min: 28, mean: 28.00, max: 28, median: 28.00, std: 0.00
+  Solution: [4, 8, 0, 9, 6, 2, 7, 1, 3, 5, 10], count: 1
+    iters -> min: 51, mean: 51.00, max: 51, median: 51.00, std: 0.00
+    backtracks -> min: 20, mean: 20.00, max: 20, median: 20.00, std: 0.00
+  Solution: [1, 9, 2, 6, 3, 10, 8, 5, 0, 4, 7], count: 1
+    iters -> min: 547, mean: 547.00, max: 547, median: 547.00, std: 0.00
+    backtracks -> min: 268, mean: 268.00, max: 268, median: 268.00, std: 0.00
+  Solution: [2, 8, 1, 3, 7, 9, 4, 0, 5, 10, 6], count: 1
+    iters -> min: 57, mean: 57.00, max: 57, median: 57.00, std: 0.00
+    backtracks -> min: 23, mean: 23.00, max: 23, median: 23.00, std: 0.00
+  Solution: [2, 0, 9, 4, 10, 8, 6, 3, 1, 7, 5], count: 1
+    iters -> min: 517, mean: 517.00, max: 517, median: 517.00, std: 0.00
+    backtracks -> min: 253, mean: 253.00, max: 253, median: 253.00, std: 0.00
+  Solution: [4, 1, 8, 5, 9, 0, 3, 10, 7, 2, 6], count: 1
+    iters -> min: 15, mean: 15.00, max: 15, median: 15.00, std: 0.00
+    backtracks -> min: 2, mean: 2.00, max: 2, median: 2.00, std: 0.00
+  Solution: [0, 9, 7, 5, 3, 1, 10, 8, 6, 4, 2], count: 2
+    iters -> min: 93, mean: 181.00, max: 269, median: 181.00, std: 88.00
+    backtracks -> min: 41, mean: 85.00, max: 129, median: 85.00, std: 44.00
+  Solution: [10, 7, 4, 2, 0, 9, 1, 5, 8, 6, 3], count: 1
+    iters -> min: 49, mean: 49.00, max: 49, median: 49.00, std: 0.00
+    backtracks -> min: 19, mean: 19.00, max: 19, median: 19.00, std: 0.00
+  Solution: [8, 0, 7, 4, 1, 9, 6, 3, 10, 2, 5], count: 1
+    iters -> min: 99, mean: 99.00, max: 99, median: 99.00, std: 0.00
+    backtracks -> min: 44, mean: 44.00, max: 44, median: 44.00, std: 0.00
+  Solution: [5, 1, 9, 6, 10, 2, 0, 3, 7, 4, 8], count: 1
+    iters -> min: 41, mean: 41.00, max: 41, median: 41.00, std: 0.00
+    backtracks -> min: 15, mean: 15.00, max: 15, median: 15.00, std: 0.00
+  Solution: [0, 2, 7, 5, 8, 1, 4, 10, 3, 6, 9], count: 1
+    iters -> min: 105, mean: 105.00, max: 105, median: 105.00, std: 0.00
+    backtracks -> min: 47, mean: 47.00, max: 47, median: 47.00, std: 0.00
+  Solution: [9, 7, 2, 4, 1, 10, 0, 5, 3, 8, 6], count: 1
+    iters -> min: 119, mean: 119.00, max: 119, median: 119.00, std: 0.00
+    backtracks -> min: 54, mean: 54.00, max: 54, median: 54.00, std: 0.00
+  Solution: [5, 9, 6, 0, 2, 4, 7, 10, 8, 3, 1], count: 1
+    iters -> min: 47, mean: 47.00, max: 47, median: 47.00, std: 0.00
+    backtracks -> min: 18, mean: 18.00, max: 18, median: 18.00, std: 0.00
+  Solution: [1, 9, 2, 6, 3, 7, 10, 4, 0, 5, 8], count: 1
+    iters -> min: 15, mean: 15.00, max: 15, median: 15.00, std: 0.00
+    backtracks -> min: 2, mean: 2.00, max: 2, median: 2.00, std: 0.00
+  Solution: [9, 2, 5, 1, 6, 10, 0, 7, 4, 8, 3], count: 1
+    iters -> min: 127, mean: 127.00, max: 127, median: 127.00, std: 0.00
+    backtracks -> min: 58, mean: 58.00, max: 58, median: 58.00, std: 0.00
+  Solution: [6, 3, 10, 0, 9, 5, 2, 8, 1, 7, 4], count: 1
+    iters -> min: 33, mean: 33.00, max: 33, median: 33.00, std: 0.00
+    backtracks -> min: 11, mean: 11.00, max: 11, median: 11.00, std: 0.00
+  Solution: [2, 0, 7, 9, 1, 6, 4, 10, 8, 5, 3], count: 1
+    iters -> min: 91, mean: 91.00, max: 91, median: 91.00, std: 0.00
+    backtracks -> min: 40, mean: 40.00, max: 40, median: 40.00, std: 0.00
+  Solution: [5, 9, 1, 4, 8, 3, 0, 7, 10, 2, 6], count: 1
+    iters -> min: 13, mean: 13.00, max: 13, median: 13.00, std: 0.00
+    backtracks -> min: 1, mean: 1.00, max: 1, median: 1.00, std: 0.00
+  Solution: [5, 2, 9, 3, 6, 8, 10, 1, 4, 0, 7], count: 1
+    iters -> min: 117, mean: 117.00, max: 117, median: 117.00, std: 0.00
+    backtracks -> min: 53, mean: 53.00, max: 53, median: 53.00, std: 0.00
+  Solution: [4, 8, 0, 3, 10, 7, 2, 6, 9, 1, 5], count: 1
+    iters -> min: 49, mean: 49.00, max: 49, median: 49.00, std: 0.00
+    backtracks -> min: 19, mean: 19.00, max: 19, median: 19.00, std: 0.00
+  Solution: [7, 4, 10, 0, 5, 3, 8, 6, 2, 9, 1], count: 1
+    iters -> min: 11, mean: 11.00, max: 11, median: 11.00, std: 0.00
+    backtracks -> min: 0, mean: 0.00, max: 0, median: 0.00, std: 0.00
